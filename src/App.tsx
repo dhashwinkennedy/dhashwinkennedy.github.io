@@ -77,8 +77,8 @@ export default function App() {
               transition={{ delay: 0.3 }}
               className="hero-sub"
             >
-              Building the future of the web with the{" "}
-              <span className="accent">MERN</span> stack.
+              Turning Ideas into Automated Solutions with{" "}
+              <span className="accent">Python</span> .
             </motion.p>
           </div>
 
@@ -177,17 +177,17 @@ export default function App() {
 
         {/* ── CTA ── */}
         <section className="cta-section">
-          <h2 className="cta-title">Ready to start a project?</h2>
+          <h2 className="cta-title">Open for Opportunities</h2>
           <p className="cta-sub">
-            I'm currently looking for new opportunities. Whether you have a
-            question or just want to say hi, my inbox is always open!
+            I am currently seeking new projects and professional roles. Let’s
+            discuss how we can work together.
           </p>
           <a
             href={`mailto:${MY_EMAIL}`}
             className="cta-btn"
             onClick={copyEmail}
           >
-            <Mail size={22} /> Say Hello
+            <Mail size={22} /> Contact Me
           </a>
         </section>
       </main>
