@@ -27,9 +27,8 @@ import "./app.css";
 
 const MY_EMAIL = "dhashwinkennedy@hotmail.com";
 
-const handleMailClick = () => {
+const copyEmail = () => {
   navigator.clipboard.writeText(MY_EMAIL).catch(() => {});
-  window.location.href = `mailto:${MY_EMAIL}`;
 };
 
 type Tab = "projects" | "skills" | "certificates";
@@ -78,8 +77,8 @@ export default function App() {
               transition={{ delay: 0.3 }}
               className="hero-sub"
             >
-              Transforming ideas into automation with{" "}
-              <span className="accent">Python</span>.
+              Building the future of the web with the{" "}
+              <span className="accent">MERN</span> stack.
             </motion.p>
           </div>
 
@@ -90,7 +89,7 @@ export default function App() {
             className="hero-btns"
           >
             <a
-              href="https://github.com/dhashwinkennedy"
+              href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -98,7 +97,7 @@ export default function App() {
               <Github size={18} /> GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/dhashwinkennedy/"
+              href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-linkedin"
@@ -106,17 +105,21 @@ export default function App() {
               <Linkedin size={18} /> LinkedIn
             </a>
             <a
-              href="https://www.instagram.com/dhashwin._.kennedy/"
+              href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-instagram"
             >
               <Instagram size={18} /> Instagram
             </a>
-            <button className="btn-mail" onClick={handleMailClick}>
+            <a
+              href={`mailto:${MY_EMAIL}`}
+              className="btn-mail"
+              onClick={copyEmail}
+            >
               <Mail size={16} />
               {MY_EMAIL}
-            </button>
+            </a>
           </motion.div>
         </div>
       </header>
@@ -179,9 +182,13 @@ export default function App() {
             I'm currently looking for new opportunities. Whether you have a
             question or just want to say hi, my inbox is always open!
           </p>
-          <button className="cta-btn" onClick={handleMailClick}>
+          <a
+            href={`mailto:${MY_EMAIL}`}
+            className="cta-btn"
+            onClick={copyEmail}
+          >
             <Mail size={22} /> Say Hello
-          </button>
+          </a>
         </section>
       </main>
 
@@ -193,21 +200,21 @@ export default function App() {
           </p>
           <div className="footer-links">
             <a
-              href="https://github.com/dhashwinkennedy"
+              href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
             >
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/dhashwinkennedy/"
+              href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
             >
               LinkedIn
             </a>
             <a
-              href="https://www.instagram.com/dhashwin._.kennedy/"
+              href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
             >
