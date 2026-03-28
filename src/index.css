@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@utility tab-btn {
+  @apply flex-1 py-4 flex items-center justify-center transition-all duration-300 relative;
+}
+
+@utility tab-indicator {
+  @apply absolute top-0 left-0 right-0 h-[2px] bg-zinc-900 scale-x-0 transition-transform duration-300;
+
+  &.active {
+    @apply scale-x-100;
+  }
+}
+
+@utility section-container {
+  @apply border-b border-zinc-200 last:border-0;
+}
+
+@utility card-base {
+  @apply bg-white p-4 rounded-xl border border-zinc-100 shadow-sm hover:shadow-md transition-shadow duration-300;
+}
+
+@utility btn-primary {
+  @apply flex items-center gap-2 px-6 py-3 bg-zinc-900 text-white rounded-full hover:bg-indigo-600 transition-all duration-300 font-bold shadow-lg shadow-zinc-200;
+}
+
+@utility btn-secondary {
+  @apply flex items-center gap-2 px-6 py-3 bg-white border border-zinc-200 text-zinc-900 rounded-full hover:border-indigo-600 hover:text-indigo-600 transition-all duration-300 font-bold shadow-sm;
+}

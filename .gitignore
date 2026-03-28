@@ -1,0 +1,59 @@
+# ── Dependencies ──────────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ── Build output ───────────────────────────────────────────────────────────────
+dist/
+dist-ssr/
+build/
+
+# ── Environment variables (keep your secrets safe) ────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ── Vite cache ─────────────────────────────────────────────────────────────────
+.vite/
+vite.config.ts.timestamp-*
+
+# ── TypeScript ─────────────────────────────────────────────────────────────────
+*.tsbuildinfo
+
+# ── Editor / IDE ───────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ── OS files ───────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ── Logs ───────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── Testing ────────────────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ── Misc ───────────────────────────────────────────────────────────────────────
+.eslintcache
+.stylelintcache
+*.local
