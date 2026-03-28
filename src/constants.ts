@@ -8,7 +8,6 @@ import prj1S2 from "./assets/screenshot/prj1S2.png";
 import prj1S3 from "./assets/screenshot/prj1S3.png";
 import prj1S4 from "./assets/screenshot/prj1S4.png";
 import prj1S5 from "./assets/screenshot/prj1S5.png";
-import prj1S6 from "./assets/screenshot/prj1S6.png";
 import prj1S7 from "./assets/screenshot/prj1S7.png";
 import prj1S8 from "./assets/screenshot/prj1S8.png";
 
@@ -32,16 +31,7 @@ export const projects = [
     github: "https://github.com/dhashwinkennedy/Ecommerce-Electronics-Website",
     live: "",
     // Replace with your own imported screenshot assets or URLs
-    screenshots: [
-      prj1S1,
-      prj1S2,
-      prj1S3,
-      prj1S4,
-      prj1S5,
-      prj1S6,
-      prj1S7,
-      prj1S8,
-    ],
+    screenshots: [prj1S1, prj1S2, prj1S3, prj1S4, prj1S5, prj1S7, prj1S8],
     skills: [
       {
         name: "HTML",
