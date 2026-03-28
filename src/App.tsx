@@ -78,8 +78,8 @@ export default function App() {
               transition={{ delay: 0.3 }}
               className="hero-sub"
             >
-              Building the future of the web with the{" "}
-              <span className="accent">MERN</span> stack.
+              Transforming ideas into automation with{" "}
+              <span className="accent">Python</span>.
             </motion.p>
           </div>
 
