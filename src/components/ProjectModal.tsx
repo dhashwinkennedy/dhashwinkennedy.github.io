@@ -30,83 +30,156 @@ const GitHubIcon = () => (
 
 export default function ProjectModal({ project, onClose }: Props) {
   const [activeScreenshot, setActiveScreenshot] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  const openLightbox = () => setLightboxOpen(true);
+  const closeLightbox = () => setLightboxOpen(false);
+
+  const goPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveScreenshot(
+      (i) => (i - 1 + project.screenshots.length) % project.screenshots.length,
+    );
+  };
+  const goNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveScreenshot((i) => (i + 1) % project.screenshots.length);
+  };
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close-btn" onClick={onClose}>
-          ✕
-        </button>
+    <>
+      {/* ── PROJECT MODAL ── */}
+      <div className="modal-backdrop" onClick={onClose}>
+        <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+          <button className="modal-close-btn" onClick={onClose}>
+            ✕
+          </button>
 
-        <div className="modal-body">
-          {/* ── LEFT PANEL ── */}
-          <div className="modal-left">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="modal-img"
-            />
-            <h2 className="modal-title">{project.title}</h2>
-            <p className="modal-desc">{project.longDesc}</p>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="modal-github-btn"
-            >
-              <GitHubIcon />
-              View on GitHub
-            </a>
-          </div>
-
-          {/* ── RIGHT PANEL ── */}
-          <div className="modal-right">
-            <h3 className="modal-section-title">Key Skills</h3>
-            <div className="skills-wrap-container">
-              {project.skills.map((skill, i) => (
-                <div key={i} className="skill-badge">
-                  {skill.iconUrl && (
-                    <img
-                      src={skill.iconUrl}
-                      alt={skill.name}
-                      className="skill-icon"
-                    />
-                  )}
-                  <span className="skill-name">{skill.name}</span>
-                </div>
-              ))}
+          <div className="modal-body">
+            {/* ── LEFT PANEL ── */}
+            <div className="modal-left">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="modal-img"
+              />
+              <h2 className="modal-title">{project.title}</h2>
+              <p className="modal-desc">{project.longDesc}</p>
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-github-btn"
+              >
+                <GitHubIcon />
+                View on GitHub
+              </a>
             </div>
 
-            {project.screenshots && project.screenshots.length > 0 && (
-              <div className="modal-screenshots">
-                <h3 className="modal-section-title">Screenshots</h3>
-                <div className="screenshot-main">
-                  <img
-                    src={project.screenshots[activeScreenshot]}
-                    alt={`Screenshot ${activeScreenshot + 1}`}
-                    className="screenshot-preview"
-                  />
-                </div>
-                {project.screenshots.length > 1 && (
-                  <div className="screenshot-thumbs">
-                    {project.screenshots.map((src, i) => (
-                      <button
-                        key={i}
-                        className={`screenshot-thumb ${i === activeScreenshot ? "active" : ""}`}
-                        onClick={() => setActiveScreenshot(i)}
-                      >
-                        <img src={src} alt={`Thumb ${i + 1}`} />
-                      </button>
-                    ))}
+            {/* ── RIGHT PANEL ── */}
+            <div className="modal-right">
+              <h3 className="modal-section-title">Key Skills</h3>
+              <div className="skills-wrap-container">
+                {project.skills.map((skill, i) => (
+                  <div key={i} className="skill-badge">
+                    {skill.iconUrl && (
+                      <img
+                        src={skill.iconUrl}
+                        alt={skill.name}
+                        className="skill-icon"
+                      />
+                    )}
+                    <span className="skill-name">{skill.name}</span>
                   </div>
-                )}
+                ))}
               </div>
-            )}
 
-            <div className="modal-extra-section" />
+              {project.screenshots && project.screenshots.length > 0 && (
+                <div className="modal-screenshots">
+                  <h3 className="modal-section-title">Screenshots</h3>
+
+                  {/* Main preview — click to open lightbox */}
+                  <div
+                    className="screenshot-main screenshot-main--clickable"
+                    onClick={openLightbox}
+                    title="Click to enlarge"
+                  >
+                    <img
+                      src={project.screenshots[activeScreenshot]}
+                      alt={`Screenshot ${activeScreenshot + 1}`}
+                      className="screenshot-preview"
+                    />
+                    <div className="screenshot-zoom-hint">
+                      🔍 Click to enlarge
+                    </div>
+                  </div>
+
+                  {project.screenshots.length > 1 && (
+                    <div className="screenshot-thumbs">
+                      {project.screenshots.map((src, i) => (
+                        <button
+                          key={i}
+                          className={`screenshot-thumb ${i === activeScreenshot ? "active" : ""}`}
+                          onClick={() => setActiveScreenshot(i)}
+                        >
+                          <img src={src} alt={`Thumb ${i + 1}`} />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="modal-extra-section" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* ── LIGHTBOX ── */}
+      {lightboxOpen && (
+        <div className="lightbox-backdrop" onClick={closeLightbox}>
+          <div className="lightbox-box" onClick={(e) => e.stopPropagation()}>
+            {/* Close */}
+            <button className="lightbox-close" onClick={closeLightbox}>
+              ✕
+            </button>
+
+            {/* Prev arrow */}
+            {project.screenshots.length > 1 && (
+              <button
+                className="lightbox-arrow lightbox-arrow--prev"
+                onClick={goPrev}
+              >
+                ‹
+              </button>
+            )}
+
+            <img
+              src={project.screenshots[activeScreenshot]}
+              alt={`Screenshot ${activeScreenshot + 1}`}
+              className="lightbox-img"
+            />
+
+            {/* Next arrow */}
+            {project.screenshots.length > 1 && (
+              <button
+                className="lightbox-arrow lightbox-arrow--next"
+                onClick={goNext}
+              >
+                ›
+              </button>
+            )}
+
+            {/* Counter */}
+            {project.screenshots.length > 1 && (
+              <div className="lightbox-counter">
+                {activeScreenshot + 1} / {project.screenshots.length}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
