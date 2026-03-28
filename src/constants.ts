@@ -17,7 +17,7 @@ import GuviPythonCertImg from "./assets/GUVI-Python.png";
 import GuviJavaScriptCertImg from "./assets/GUVI-JavaScript.png";
 import GuviHTMLCSSCertImg from "./assets/GUVI-HTMLCSS.png";
 
-import HackeRankPythonBasicCertImg from "./assets/HACKERRANK-PYTHON.png";
+import HackeRankPythonBasicCertImg from "./assets/HACKERRANK-Python.png";
 
 // ─── PROJECTS ────────────────────────────────────────────────────────────────
 export const projects = [
