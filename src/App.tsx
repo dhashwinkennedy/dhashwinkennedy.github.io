@@ -97,7 +97,7 @@ export default function App() {
             className="hero-btns"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/dhashwinkennedy/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -105,7 +105,7 @@ export default function App() {
               <Github size={18} /> GitHub
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/dhashwinkennedy/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-linkedin"
@@ -113,7 +113,7 @@ export default function App() {
               <Linkedin size={18} /> LinkedIn
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/dhashwin._.kennedy/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-instagram"
@@ -208,21 +208,21 @@ export default function App() {
           </p>
           <div className="footer-links">
             <a
-              href="https://github.com"
+              href="https://github.com/dhashwinkennedy/"
               target="_blank"
               rel="noopener noreferrer"
             >
               GitHub
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/dhashwinkennedy/"
               target="_blank"
               rel="noopener noreferrer"
             >
               LinkedIn
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/dhashwin._.kennedy/"
               target="_blank"
               rel="noopener noreferrer"
             >
