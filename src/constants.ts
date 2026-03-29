@@ -32,6 +32,8 @@ export const projects = [
     live: "",
     // Replace with your own imported screenshot assets or URLs
     screenshots: [prj1S1, prj1S2, prj1S3, prj1S4, prj1S5, prj1S7, prj1S8],
+    warning:
+      "The current UI is optimized specifically for a 1920×1080 viewport and is not yet fully responsive across all device breakpoints. Additionally, the integrated database currently contains a limited sample set of products for demonstration purposes.",
     skills: [
       {
         name: "HTML",

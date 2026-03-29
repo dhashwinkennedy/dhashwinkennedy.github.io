@@ -13,6 +13,7 @@ interface Project {
   longDesc: string;
   github: string;
   live: string;
+  warning?: string;
   screenshots: string[];
   skills: Skill[];
 }
@@ -131,6 +132,14 @@ export default function ProjectModal({ project, onClose }: Props) {
               )}
 
               <div className="modal-extra-section" />
+
+              {/* Warning banner — only shown if project has a warning */}
+              {project.warning && (
+                <div className="modal-warning">
+                  <span className="modal-warning-icon">⚠️</span>
+                  <p className="modal-warning-text">{project.warning}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
