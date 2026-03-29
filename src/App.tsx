@@ -204,7 +204,8 @@ export default function App() {
       <footer className="footer">
         <div className="footer-inner">
           <p className="footer-copy">
-            © {new Date().getFullYear()} Dhashwin Kennedy.
+            © {new Date().getFullYear()} R Dhashwin Kennedy. All rights
+            reserved.
           </p>
           <div className="footer-links">
             <a
