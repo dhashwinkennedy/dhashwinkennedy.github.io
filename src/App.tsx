@@ -14,9 +14,9 @@ import {
   Mail,
   Instagram,
 } from "lucide-react";
-
+import ReactGA from "react-ga4";
 import ProfileLogo from "./assets/profile-logo.png";
-
+import { useEffect } from "react";
 import { projects, skills, certificates, aboutMe } from "./constants";
 import ProjectCard from "./components/ProjectCard";
 import SkillsSection from "./components/SkillsSection";
@@ -32,8 +32,9 @@ const copyEmail = () => {
 };
 
 type Tab = "projects" | "skills" | "certificates";
-
 export default function App() {
+  const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+  ReactGA.initialize(MEASUREMENT_ID);
   const [activeTab, setActiveTab] = useState<Tab>("projects");
 
   const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
@@ -42,6 +43,13 @@ export default function App() {
     { id: "skills", label: "Skills", icon: <Cpu size={12} /> },
   ];
 
+  useEffect(() => {
+    // This sends a "page_view" event every time the URL changes
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname + location.search,
+    });
+  }, [location]);
   return (
     <div className="app-root">
       {/* ── HERO ── */}
