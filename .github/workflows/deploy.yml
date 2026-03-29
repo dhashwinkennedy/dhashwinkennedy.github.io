@@ -30,9 +30,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Build
+      # Build (ENV ADDED HERE)
       - name: Build
         run: npm run build
+        env:
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
 
       # Upload artifact
       - name: Upload Pages artifact
