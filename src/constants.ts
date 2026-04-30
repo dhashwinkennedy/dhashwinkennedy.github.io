@@ -3,6 +3,8 @@ import React from "react";
 
 // ── Asset imports ─────────────────────────────────────────────────────────────
 import prj1Image from "./assets/prj1.png";
+import prj2Image from "./assets/prj2.png";
+
 import prj1S1 from "./assets/screenshot/prj1S1.png";
 import prj1S2 from "./assets/screenshot/prj1S2.png";
 import prj1S3 from "./assets/screenshot/prj1S3.png";
@@ -11,6 +13,9 @@ import prj1S5 from "./assets/screenshot/prj1S5.png";
 import prj1S7 from "./assets/screenshot/prj1S7.png";
 import prj1S8 from "./assets/screenshot/prj1S8.png";
 
+import prj2S1 from "./assets/screenshot/prj2S1.png";
+import prj2S2 from "./assets/screenshot/prj2S2.png";
+import prj2S3 from "./assets/screenshot/prj2S3.png";
 import MERNCertImg from "./assets/udemy-MERN.jpg";
 import GuviPythonCertImg from "./assets/GUVI-Python.png";
 import GuviJavaScriptCertImg from "./assets/GUVI-JavaScript.png";
@@ -68,6 +73,29 @@ export const projects = [
       { name: "Express.js", iconUrl: "" },
     ],
   },
+   {
+    id: 2,
+    image: prj2Image,
+    title: "Daily Price Monitoring & Data Extraction Engine for Amazon Search Results",
+    shortDesc:
+    "An automated Amazon search scraper built with Python, Selenium, and BS4. It extracts ASINs and real-time pricing data across multiple pages and stores it in a structured JSON format for historical tracking.",
+    longDesc:
+    "This Python project is an automated tool that scrapes Amazon search results to collect product ASINs and their current prices. Using Selenium and BeautifulSoup, it navigates through multiple pages of search results and saves the data into a structured JSON file. It is designed to help users track price changes over time and features an automatic driver setup for easy installation.",
+    github: "https://github.com/dhashwinkennedy/Amazon-Search-Price-Tracker-An-Automated-Data-Extraction-with-Selenium-BS4",
+    live: "",
+    // Replace with your own imported screenshot assets or URLs
+    screenshots: [prj2S1, prj2S2, prj2S3],
+    warning:
+    "This project is strictly for educational and learning purposes. It demonstrates web scraping and automation concepts using Selenium. It is not intended for commercial use. Users are responsible for complying with Amazon's Terms of Service and legal requirements.",
+    skills: [
+      {
+        name: "Python",
+        iconUrl:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+    ],
+  },
+  
   // Add more projects here — just import the image at the top and set image: yourImport
 ];
 
