@@ -409,6 +409,27 @@ body {
   gap: 16px;
 }
 
+/* View All / Show Less button */
+.view-all-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: #fff;
+  color: var(--indigo);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 2px dashed var(--indigo-light);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.view-all-btn:hover {
+  background: var(--indigo-light);
+  border-color: var(--indigo);
+  transform: scale(1.01);
+}
+
 .current-grid {
   display: flex;
   flex-direction: row;

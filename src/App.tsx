@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Github,
@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import ReactGA from "react-ga4";
 import ProfileLogo from "./assets/profile-logo.png";
-import { useEffect } from "react";
 import { projects, skills, certificates, aboutMe } from "./constants";
 import ProjectCard from "./components/ProjectCard";
 import SkillsSection from "./components/SkillsSection";
@@ -32,24 +31,33 @@ const copyEmail = () => {
 };
 
 type Tab = "projects" | "skills" | "certificates";
+
+const PREVIEW_COUNT = 3;
+
 export default function App() {
   const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
   ReactGA.initialize(MEASUREMENT_ID);
+
   const [activeTab, setActiveTab] = useState<Tab>("projects");
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [showAllCerts, setShowAllCerts] = useState(false);
+
+  const visibleProjects = showAllProjects ? projects : projects.slice(0, PREVIEW_COUNT);
+  const visibleCerts    = showAllCerts    ? certificates : certificates.slice(0, PREVIEW_COUNT);
 
   const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
-    { id: "projects", label: "Projects", icon: <Grid3X3 size={12} /> },
+    { id: "projects",     label: "Projects",     icon: <Grid3X3 size={12} /> },
     { id: "certificates", label: "Certificates", icon: <Bookmark size={12} /> },
-    { id: "skills", label: "Skills", icon: <Cpu size={12} /> },
+    { id: "skills",       label: "Skills",       icon: <Cpu size={12} /> },
   ];
 
   useEffect(() => {
-    // This sends a "page_view" event every time the URL changes
     ReactGA.send({
       hitType: "pageview",
       page: location.pathname + location.search,
     });
   }, [location]);
+
   return (
     <div className="app-root">
       {/* ── HERO ── */}
@@ -168,16 +176,38 @@ export default function App() {
             >
               {activeTab === "projects" && (
                 <div className="projects-list">
-                  {projects.map((project) => (
+                  {visibleProjects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                   ))}
+                  {projects.length > PREVIEW_COUNT && (
+                    <button
+                      className="view-all-btn"
+                      onClick={() => setShowAllProjects((v) => !v)}
+                    >
+                      {showAllProjects
+                        ? "Show Less ↑"
+                        : `View All Projects (${projects.length}) ↓`}
+                    </button>
+                  )}
                 </div>
               )}
 
               {activeTab === "skills" && <SkillsSection skills={skills} />}
 
               {activeTab === "certificates" && (
-                <CertificatesSection certificates={certificates} />
+                <div className="certs-list">
+                  <CertificatesSection certificates={visibleCerts} />
+                  {certificates.length > PREVIEW_COUNT && (
+                    <button
+                      className="view-all-btn"
+                      onClick={() => setShowAllCerts((v) => !v)}
+                    >
+                      {showAllCerts
+                        ? "Show Less ↑"
+                        : `View All Certificates (${certificates.length}) ↓`}
+                    </button>
+                  )}
+                </div>
               )}
             </motion.div>
           </AnimatePresence>
@@ -187,7 +217,7 @@ export default function App() {
         <section className="cta-section">
           <h2 className="cta-title">Open for Opportunities</h2>
           <p className="cta-sub">
-            I am currently seeking new projects and professional roles. Let’s
+            I am currently seeking new projects and professional roles. Let's
             discuss how we can work together.
           </p>
           <a
