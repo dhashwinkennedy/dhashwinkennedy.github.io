@@ -247,7 +247,7 @@ export const certificates = [
 
 export const aboutMe = {
   tagline:
-    "**Completed 12th grade and currently awaiting results, actively working on Python automation and full-stack web development projects.**",
+    "**12th-grade high school graduate with a strong interest in technology and software development, actively building Python automation solutions and full-stack web development projects.**",
   description:
     "I'm a young and passionate computer science enthusiast who started my journey after completing my 10th boards and have been continuously learning and building ever since. I have a strong focus on **Python automation** and **full-stack web development (MERN)**, and I enjoy creating real-world projects, solving problems, and exploring new technologies to improve my skills. In addition to development, I have a keen interest in **Cybersecurity**, **AI/ML**, and **DevOps**, and I'm always eager to explore and work on these domains, completing what I start with dedication. I'm open to opportunities where I can learn, contribute, and grow as a developer while gaining real-world experience.",
   coreFocus: [
