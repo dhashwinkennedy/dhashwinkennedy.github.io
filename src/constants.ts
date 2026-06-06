@@ -141,7 +141,7 @@ export const projects = [
       },
       {
         name:"Google Gemini API",
-        iconUrl:"https://api.iconify.design/simple-icons:googlegemini.svg?color=%238E44AD"
+        iconUrl:"https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.svg"
       },
       {
         name:"Pillow Image Processing",
