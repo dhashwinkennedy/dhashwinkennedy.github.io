@@ -95,6 +95,18 @@ export const projects = [
         iconUrl:
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
+      {
+        name:"Selenium",
+        iconUrl:"https://www.google.com/search?q=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
+      },
+      {
+        name:"JSON",
+        iconUrl:""
+      },
+      {
+        name:"webdriver-manager",
+        iconUrl:""
+      }
     ],
   },
   
