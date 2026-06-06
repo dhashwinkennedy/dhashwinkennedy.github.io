@@ -29,6 +29,7 @@ export const projects = [
     id: 1,
     image: prj1Image,
     title: "Ecommerce Electronics Website",
+    date:"Mar 27, 2026",
     shortDesc:
       "A full-stack ecommerce platform built using the MERN stack, featuring product listing, cart, orders, user profiles, and wishlist functionality.",
     longDesc:
@@ -77,6 +78,7 @@ export const projects = [
     id: 2,
     image: prj2Image,
     title: "Daily Price Monitoring & Data Extraction Engine for Amazon Search Results",
+    date: "Apr 30, 2026",
     shortDesc:
     "An automated Amazon search scraper built with Python, Selenium, and BS4. It extracts ASINs and real-time pricing data across multiple pages and stores it in a structured JSON format for historical tracking.",
     longDesc:
@@ -130,6 +132,7 @@ export const certificates = [
     image: MERNCertImg,
     imageClass: "udemy",
     title: "React, NodeJS, Express & MongoDB - The MERN Fullstack Guide",
+    date : "Sept 13, 2025",
     description:
       "Completed a full-stack development course using the MERN stack, covering React, Node.js, Express, and MongoDB.",
     issuer: "Udemy",
@@ -174,6 +177,7 @@ export const certificates = [
     image: HackeRankPythonBasicCertImg,
     imageClass: "udemy",
     title: "HackerRank Python(Basic)",
+    date: "Nov 08, 2025",
     description:
       "Certified in core Python proficiency, covering data structures, functional programming, and algorithmic problem-solving through rigorous HackerRank challenges.",
     issuer: "HackerRank",
@@ -191,6 +195,7 @@ export const certificates = [
     image: GuviPythonCertImg,
     imageClass: "guvi",
     title: "Python Certification of Completion",
+    date : "May 18 2024",
     description:
       "Completed a certification course covering core Python programming concepts and applications.",
     issuer: "HCLGUVI",
@@ -208,6 +213,7 @@ export const certificates = [
     image: GuviJavaScriptCertImg,
     imageClass: "guvi",
     title: "JavaScript Certification of Completion",
+    date: "May 11, 2025",
     description:
       "Completed a certification course covering core JavaScript programming concepts and applications.",
     issuer: "HCLGUVI",
@@ -225,6 +231,7 @@ export const certificates = [
     image: GuviHTMLCSSCertImg,
     imageClass: "guvi",
     title: "HTML & CSS Certification of Completion",
+    date: "May 6, 2025",
     description:
       "Completed a comprehensive program covering semantic HTML5 and modern CSS3. Focused on responsive design, Flexbox, and CSS Grid to build accessible, mobile-first user interfaces.",
     issuer: "HCLGUVI",
