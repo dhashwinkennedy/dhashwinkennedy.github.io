@@ -107,10 +107,13 @@ export const projects = [
         iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
       },
       {
-        name:"BeautifulSoup4",
+        name:"Automation",
         iconUrl:""
       },
       {
+        name:"BeautifulSoup4",
+        iconUrl:""
+      },{
         name:"webdriver-manager",
         iconUrl:""
       }
@@ -149,6 +152,9 @@ export const projects = [
       },{
         name:"Cloudinary Hosting",
         iconUrl:"https://api.iconify.design/simple-icons:cloudinary.svg?color=%233448C5"
+      },{
+        name:"Automation",
+        iconUrl:""
       },
     ],
   },
