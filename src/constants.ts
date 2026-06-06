@@ -97,7 +97,7 @@ export const projects = [
       },
       {
         name:"Selenium",
-        iconUrl:"https://www.google.com/search?q=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
+        iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
       },
       {
         name:"BeautifulSoup4",
