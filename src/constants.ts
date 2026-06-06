@@ -100,7 +100,7 @@ export const projects = [
         iconUrl:"https://www.google.com/search?q=https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
       },
       {
-        name:"JSON",
+        name:"BeautifulSoup4",
         iconUrl:""
       },
       {
