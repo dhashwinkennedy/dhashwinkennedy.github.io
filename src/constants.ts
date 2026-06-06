@@ -3,8 +3,6 @@ import React from "react";
 
 // ── Asset imports ─────────────────────────────────────────────────────────────
 import prj1Image from "./assets/prj1.png";
-import prj2Image from "./assets/prj2.png";
-
 import prj1S1 from "./assets/screenshot/prj1S1.png";
 import prj1S2 from "./assets/screenshot/prj1S2.png";
 import prj1S3 from "./assets/screenshot/prj1S3.png";
@@ -13,9 +11,18 @@ import prj1S5 from "./assets/screenshot/prj1S5.png";
 import prj1S7 from "./assets/screenshot/prj1S7.png";
 import prj1S8 from "./assets/screenshot/prj1S8.png";
 
+
+import prj2Image from "./assets/prj2.png";
 import prj2S1 from "./assets/screenshot/prj2S1.png";
 import prj2S2 from "./assets/screenshot/prj2S2.png";
 import prj2S3 from "./assets/screenshot/prj2S3.png";
+
+
+import prj3Image from "./assets/prj3.png";
+import prj3S1 from "./assets/screenshot/prj3S1.png";
+import prj3S2 from "./assets/screenshot/prj3S2.png";
+
+
 import MERNCertImg from "./assets/udemy-MERN.jpg";
 import GuviPythonCertImg from "./assets/GUVI-Python.png";
 import GuviJavaScriptCertImg from "./assets/GUVI-JavaScript.png";
@@ -29,7 +36,7 @@ export const projects = [
     id: 1,
     image: prj1Image,
     title: "Ecommerce Electronics Website",
-    date:"Mar 27, 2026",
+    date:"March 27, 2026",
     shortDesc:
       "A full-stack ecommerce platform built using the MERN stack, featuring product listing, cart, orders, user profiles, and wishlist functionality.",
     longDesc:
@@ -78,7 +85,7 @@ export const projects = [
     id: 2,
     image: prj2Image,
     title: "Daily Price Monitoring & Data Extraction Engine for Amazon Search Results",
-    date: "Apr 30, 2026",
+    date: "April 30, 2026",
     shortDesc:
     "An automated Amazon search scraper built with Python, Selenium, and BS4. It extracts ASINs and real-time pricing data across multiple pages and stores it in a structured JSON format for historical tracking.",
     longDesc:
@@ -107,6 +114,42 @@ export const projects = [
         name:"webdriver-manager",
         iconUrl:""
       }
+    ],
+  },{
+    id: 3,
+    image: prj3Image,
+    title: "AI-Powered Social Media Quote Publisher ",
+    date: "June 06, 2026",
+    shortDesc: 
+    "Automate your social media with this Python pipeline. It uses Google Gemini to generate quotes, Pillow to design graphics, Cloudinary for hosting, and the Meta Graph API to auto-publish to Instagram & Facebook.",
+    longDesc:
+    "The AI-Powered Social Media Quote Publisher is a fully automated content engine that handles creation to distribution. First, the Google Gemini API dynamically generates motivational morning quotes. Next, the Pillow library programmatically overlays this text onto a pre-designed image template. The final graphic is uploaded to Cloudinary to secure a public CDN link. Finally, the Meta Graph API uses this link to cross-publish the post to Instagram and Facebook simultaneously, eliminating tedious manual work.",
+    github: "https://github.com/dhashwinkennedy/Amazon-Search-Price-Tracker-An-Automated-Data-Extraction-with-Selenium-BS4",
+    live: "",
+    // Replace with your own imported screenshot assets or URLs
+    screenshots: [prj3S1, prj3S2],
+    warning: "",
+    skills: [
+      {
+        name: "Python",
+        iconUrl:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name:"Meta Graph API",
+        iconUrl:"https://api.iconify.design/simple-icons:meta.svg?color=%230866FF"
+      },
+      {
+        name:"Google Gemini API",
+        iconUrl:"https://api.iconify.design/simple-icons:googlegemini.svg?color=%238E44AD"
+      },
+      {
+        name:"Pillow Image Processing",
+        iconUrl:"https://raw.githubusercontent.com/python-pillow/pillow-logo/main/pillow-logo-248x250.png"
+      },{
+        name:"Cloudinary Hosting",
+        iconUrl:"https://api.iconify.design/simple-icons:cloudinary.svg?color=%233448C5"
+      },
     ],
   },
   
@@ -144,7 +187,7 @@ export const certificates = [
     image: MERNCertImg,
     imageClass: "udemy",
     title: "React, NodeJS, Express & MongoDB - The MERN Fullstack Guide",
-    date : "Sept 13, 2025",
+    date : "September 13, 2025",
     description:
       "Completed a full-stack development course using the MERN stack, covering React, Node.js, Express, and MongoDB.",
     issuer: "Udemy",
@@ -189,7 +232,7 @@ export const certificates = [
     image: HackeRankPythonBasicCertImg,
     imageClass: "udemy",
     title: "HackerRank Python(Basic)",
-    date: "Nov 08, 2025",
+    date: "November 08, 2025",
     description:
       "Certified in core Python proficiency, covering data structures, functional programming, and algorithmic problem-solving through rigorous HackerRank challenges.",
     issuer: "HackerRank",
