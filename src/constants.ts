@@ -103,7 +103,7 @@ export const projects = [
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
       {
-        name:"Selenium",
+        name:"Selenium WebDriver",
         iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
       },
       {
