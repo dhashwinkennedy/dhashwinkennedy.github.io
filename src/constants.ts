@@ -22,7 +22,8 @@ import prj3Image from "./assets/prj3.png";
 import prj3S1 from "./assets/screenshot/prj3S1.png";
 import prj3S2 from "./assets/screenshot/prj3S2.png";
 
-
+import FastAPICertImg from "./assets/udemy-FastAPI.jpg";
+import n8nCertImg from "./assets/udemy-n8n.jpg";
 import MERNCertImg from "./assets/udemy-MERN.jpg";
 import GuviPythonCertImg from "./assets/GUVI-Python.png";
 import GuviJavaScriptCertImg from "./assets/GUVI-JavaScript.png";
@@ -190,6 +191,54 @@ export const skills = [
 export const certificates = [
   {
     id: 1,
+    image: FastAPICertImg,
+    imageClass: "udemy",
+    title: "FastAPI - The Complete Course 2026 (Beginner + Advanced)",
+    date : "July 12, 2026",
+    description:
+      "Completed a comprehensive FastAPI course covering REST APIs, JWT authentication, SQLAlchemy, testing, and deployment.",
+    issuer: "Udemy",
+    verifyLink:
+      "https://www.udemy.com/certificate/UC-ca8759c7-95ed-40cb-ab4a-bec8b748bb31/",
+    skills: [
+      {
+        name: "Python",
+        iconUrl:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "FastAPI",
+        iconUrl:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+      
+      
+    ],
+    
+  },
+  {
+    id: 2,
+    image: n8nCertImg,
+    imageClass: "udemy",
+    title: "Complete N8N and AI Automation Masterclass",
+    date : "July 13, 2026",
+    description:
+      "Learned n8n automation, AI workflows, API integrations, webhooks, and no-code workflow orchestration",
+    issuer: "Udemy",
+    verifyLink:
+      "https://www.udemy.com/certificate/UC-36798410-c3c9-4997-821c-50005b710f8e/",
+    skills: [
+      {
+        name: "N8N",
+        iconUrl:
+          "https://cdn.simpleicons.org/n8n",
+      },
+      
+    ],
+    
+  }
+  ,{
+    id: 3,
     image: MERNCertImg,
     imageClass: "udemy",
     title: "React, NodeJS, Express & MongoDB - The MERN Fullstack Guide",
@@ -233,6 +282,8 @@ export const certificates = [
       { name: "Express.js", iconUrl: "" },
     ],
   },
+  
+  
   {
     id: 2,
     image: HackeRankPythonBasicCertImg,
