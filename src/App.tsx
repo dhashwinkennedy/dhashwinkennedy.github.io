@@ -35,8 +35,13 @@ type Tab = "projects" | "skills" | "certificates";
 const PREVIEW_COUNT = 3;
 
 export default function App() {
-  const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
-  ReactGA.initialize(MEASUREMENT_ID);
+  try {
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+
+  if (measurementId) {
+    ReactGA.initialize(measurementId);
+  }
+} catch {}
 
   const [activeTab, setActiveTab] = useState<Tab>("projects");
   const [showAllProjects, setShowAllProjects] = useState(false);
