@@ -128,7 +128,7 @@ export const projects = [
     "Automate your social media with this Python pipeline. It uses Google Gemini to generate quotes, Pillow to design graphics, Cloudinary for hosting, and the Meta Graph API to auto-publish to Instagram & Facebook.",
     longDesc:
     "The AI-Powered Social Media Quote Publisher is a fully automated content engine that handles creation to distribution. First, the Google Gemini API dynamically generates motivational morning quotes. Next, the Pillow library programmatically overlays this text onto a pre-designed image template. The final graphic is uploaded to Cloudinary to secure a public CDN link. Finally, the Meta Graph API uses this link to cross-publish the post to Instagram and Facebook simultaneously.",
-    github: "https://github.com/dhashwinkennedy/Amazon-Search-Price-Tracker-An-Automated-Data-Extraction-with-Selenium-BS4",
+    github: "https://github.com/dhashwinkennedy/AI-Powered-Social-Media-Quote-Publisher",
     live: "",
     // Replace with your own imported screenshot assets or URLs
     screenshots: [prj3S1, prj3S2],
