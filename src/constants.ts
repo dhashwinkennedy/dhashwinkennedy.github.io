@@ -38,6 +38,7 @@ import prj5S3 from "./assets/screenshot/prj5S3.png";
 
 
 import FastAPICertImg from "./assets/udemy-FastAPI.jpg";
+import ChatbotCertImg from "./assets/udemy-Chatbot.jpg";
 import n8nCertImg from "./assets/udemy-n8n.jpg";
 import MERNCertImg from "./assets/udemy-MERN.jpg";
 import GuviPythonCertImg from "./assets/GUVI-Python.png";
@@ -373,7 +374,7 @@ export const certificates = [
     
   },  {
     id: 8,
-    image: FastAPICertImg,
+    image: ChatbotCertImg,
     imageClass: "udemy",
     title: "Chatbot - The Development Guide 2026 (Beginner + Advanced)",
     date : "July 15, 2026",
