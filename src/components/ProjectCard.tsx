@@ -1,25 +1,12 @@
-import { useState } from "react";
-import ProjectModal from "./ProjectModal";
-
-interface Skill {
-  name: string;
-  iconUrl: string;
-}
-
-interface Project {
-  id: number;
-  image: string;
-  title: string;
-  shortDesc: string;
-  longDesc: string;
-  github: string;
-  live: string;
-  screenshots: string[];
-  skills: Skill[];
-}
+import { motion } from "motion/react";
+import type { Project } from "../constants";
+import HighlightedText from "./HighlightedText";
+import ShareButton from "./ShareButton";
 
 interface Props {
   project: Project;
+  isHighlighted?: boolean;
+  onOpen: (project: Project) => void;
 }
 
 const GitHubIcon = () => (
@@ -28,37 +15,70 @@ const GitHubIcon = () => (
   </svg>
 );
 
-export default function ProjectCard({ project }: Props) {
-  const [modalOpen, setModalOpen] = useState(false);
+const TelegramIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M9.04 15.42 8.9 19.7c.29 0 .42-.13.57-.28l2.05-1.96 4.25 3.11c.78.43 1.33.2 1.54-.72l2.79-13.07c.25-1.15-.42-1.6-1.18-1.32L2.53 11.76c-1.12.44-1.11 1.06-.19 1.34l4.19 1.31 9.73-6.14c.46-.28.88-.13.53.18L9.04 15.42Z" />
+  </svg>
+);
 
+export default function ProjectCard({ project, isHighlighted = false, onOpen }: Props) {
   return (
-    <>
-      <div className="current-grid" onClick={() => setModalOpen(true)}>
+    <motion.div
+      id={`project-${project.query}`}
+      initial={false}
+      animate={
+        isHighlighted
+          ? {
+              scale: [1, 1.04, 1],
+              filter: ["brightness(1)", "brightness(1.06)", "brightness(1)"],
+              boxShadow: [
+                "0 0 0 rgba(79, 70, 229, 0)",
+                "0 0 0 3px rgba(79, 70, 229, 0.24), 0 18px 48px rgba(79, 70, 229, 0.24)",
+                "0 0 0 rgba(79, 70, 229, 0)",
+              ],
+            }
+          : { scale: 1, filter: "brightness(1)", boxShadow: "0 0 0 rgba(79, 70, 229, 0)" }
+      }
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+    >
+      <div
+        className="current-grid"
+        onClick={() => onOpen(project)}
+      >
         <div className="hover-overlay">
           <span>View Details →</span>
         </div>
         <img src={project.image} alt={project.title} className="Prj-img-pic" />
         <div className="text-right-div">
           <h2 className="h2-tag">{project.title}</h2>
-          <p className="p-tag">{project.shortDesc}</p>
+          <p className="p-tag"><HighlightedText text={project.shortDesc} /></p>
           <div className="prj-link-logo-div">
+            <ShareButton projectTitle={project.title} projectQuery={project.query} />
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(event) => event.stopPropagation()}
               className="card-github-btn"
             >
               <GitHubIcon />
-              View on GitHub
+              GitHub
             </a>
+            {project.telegram && (
+              <a
+                href={project.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => event.stopPropagation()}
+                className="card-telegram-btn"
+              >
+                <TelegramIcon />
+                Telegram
+              </a>
+            )}
           </div>
         </div>
       </div>
-
-      {modalOpen && (
-        <ProjectModal project={project} onClose={() => setModalOpen(false)} />
-      )}
-    </>
+    </motion.div>
   );
 }
