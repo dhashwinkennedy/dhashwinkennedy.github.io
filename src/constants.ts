@@ -561,14 +561,19 @@ I am driven by a hands-on learning approach, where every project helps me streng
 I am always eager to collaborate on meaningful projects, contribute to innovative solutions, and gain real-world experience while continuously growing as a software developer and automation engineer. My goal is to build reliable, scalable, and impactful software that delivers real value to users.`,
   coreFocus: [
     {
-      name: "Python Automation",
+      name: "Automation",
       iconUrl:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        "https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/cog.svg",
     },
     {
-      name: "Full-Stack Web Development (MERN)",
+      name: "AI Workflows",
       iconUrl:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        "https://api.iconify.design/lucide:brain-circuit.svg",
+    },
+    {
+      name: "AI Chatbots",
+      iconUrl:
+        "https://api.iconify.design/lucide:bot.svg",
     },
   ],
   areasOfInterest: [
