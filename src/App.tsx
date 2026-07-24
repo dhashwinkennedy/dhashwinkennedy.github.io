@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Github,
@@ -16,11 +16,14 @@ import {
 } from "lucide-react";
 import ReactGA from "react-ga4";
 import ProfileLogo from "./assets/profile-logo.png";
-import { projects, skills, certificates, aboutMe } from "./constants";
+import { projects, skills, certificates, aboutMe, education } from "./constants";
 import ProjectCard from "./components/ProjectCard";
+import ProjectModal from "./components/ProjectModal";
 import SkillsSection from "./components/SkillsSection";
 import CertificatesSection from "./components/CertificatesSection";
 import AboutSection from "./components/AboutSection";
+import EducationSection from "./components/EducationSection";
+import LoadingScreen from "./components/LoadingScreen";
 
 import "./app.css";
 
@@ -32,7 +35,42 @@ const copyEmail = () => {
 
 type Tab = "projects" | "skills" | "certificates";
 
-const PREVIEW_COUNT = 3;
+const PREVIEW_COUNT = 5;
+const PROJECT_QUERY_PARAM = "project";
+
+type Project = (typeof projects)[number];
+
+const preloadImage = (source: string) =>
+  new Promise<void>((resolve) => {
+    const image = new Image();
+    image.onload = () => resolve();
+    image.onerror = () => resolve();
+    image.src = source;
+  });
+
+const getProjectFromUrl = () => {
+  const projectQuery = new URLSearchParams(window.location.search).get(
+    PROJECT_QUERY_PARAM,
+  );
+
+  return projects.find((project) => project.query === projectQuery) ?? null;
+};
+
+const updateProjectUrl = (query?: string, replace = false) => {
+  const url = new URL(window.location.href);
+
+  if (query) {
+    url.searchParams.set(PROJECT_QUERY_PARAM, query);
+  } else {
+    url.searchParams.delete(PROJECT_QUERY_PARAM);
+  }
+
+  window.history[replace ? "replaceState" : "pushState"](
+    window.history.state,
+    "",
+    `${url.pathname}${url.search}${url.hash}`,
+  );
+};
 
 export default function App() {
   try {
@@ -46,6 +84,10 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("projects");
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCerts, setShowAllCerts] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [highlightedProjectQuery, setHighlightedProjectQuery] = useState<string | null>(null);
+  const [isAppReady, setIsAppReady] = useState(false);
+  const deepLinkTimers = useRef<number[]>([]);
 
   const visibleProjects = showAllProjects ? projects : projects.slice(0, PREVIEW_COUNT);
   const visibleCerts    = showAllCerts    ? certificates : certificates.slice(0, PREVIEW_COUNT);
@@ -63,8 +105,89 @@ export default function App() {
     });
   }, [location]);
 
+  useEffect(() => {
+    let isMounted = true;
+    const minimumLoadTime = new Promise<void>((resolve) => {
+      window.setTimeout(resolve, 450);
+    });
+    const fontsReady = "fonts" in document ? document.fonts.ready : Promise.resolve();
+    const essentialAssets = [ProfileLogo, ...projects.map((project) => project.image)];
+
+    void Promise.all([
+      Promise.all(essentialAssets.map(preloadImage)),
+      fontsReady,
+      minimumLoadTime,
+    ]).then(() => {
+      if (isMounted) setIsAppReady(true);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    const project = getProjectFromUrl();
+
+    if (!project) {
+      return;
+    }
+
+    setActiveTab("projects");
+    setShowAllProjects(true);
+
+    const beginDeepLinkTransition = () => {
+      document.getElementById(`project-${project.query}`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      deepLinkTimers.current.push(
+        window.setTimeout(() => setHighlightedProjectQuery(project.query), 450),
+        window.setTimeout(() => {
+          setHighlightedProjectQuery(null);
+          setSelectedProject(project);
+        }, 1_300),
+      );
+    };
+
+    deepLinkTimers.current.push(window.setTimeout(beginDeepLinkTransition, 100));
+
+    return () => {
+      deepLinkTimers.current.forEach(window.clearTimeout);
+      deepLinkTimers.current = [];
+    };
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setSelectedProject(getProjectFromUrl());
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const openProject = (project: Project) => {
+    setSelectedProject(project);
+    updateProjectUrl(project.query);
+  };
+
+  const closeProject = () => {
+    setSelectedProject(null);
+    updateProjectUrl(undefined, true);
+  };
+
   return (
-    <div className="app-root">
+    <>
+      <AnimatePresence>{!isAppReady && <LoadingScreen />}</AnimatePresence>
+      <motion.div
+        className="app-root"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: isAppReady ? 1 : 0, y: isAppReady ? 0 : 8 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        aria-busy={!isAppReady}
+      >
       {/* ── HERO ── */}
       <header className="hero">
         <div className="hero-inner">
@@ -182,7 +305,12 @@ export default function App() {
               {activeTab === "projects" && (
                 <div className="projects-list">
                   {visibleProjects.map((project) => (
-                    <ProjectCard key={project.id} project={project} />
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      isHighlighted={highlightedProjectQuery === project.query}
+                      onOpen={openProject}
+                    />
                   ))}
                   {projects.length > PREVIEW_COUNT && (
                     <button
@@ -197,7 +325,18 @@ export default function App() {
                 </div>
               )}
 
-              {activeTab === "skills" && <SkillsSection skills={skills} />}
+              {activeTab === "skills" && (
+                <div className="skills-education-layout">
+                  <section className="skills-education-section">
+                    <h2 className="skills-education-heading">Skills</h2>
+                    <SkillsSection skills={skills} />
+                  </section>
+                  <section className="skills-education-section">
+                    <h2 className="skills-education-heading">Education</h2>
+                    <EducationSection education={education} />
+                  </section>
+                </div>
+              )}
 
               {activeTab === "certificates" && (
                 <div className="certs-list">
@@ -267,6 +406,11 @@ export default function App() {
           </div>
         </div>
       </footer>
-    </div>
+
+      {selectedProject && (
+        <ProjectModal project={selectedProject} onClose={closeProject} />
+      )}
+      </motion.div>
+    </>
   );
 }
