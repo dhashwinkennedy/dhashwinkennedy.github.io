@@ -148,7 +148,7 @@ export const projects: Project[] = [
       {
         name:"Dropbox API",
         iconUrl:"https://api.iconify.design/logos:dropbox.svg"
-      },
+      }
     ,{
         name:"Telegram",
         iconUrl:"https://cdn.simpleicons.org/telegram"
