@@ -131,12 +131,10 @@ export const projects: Project[] = [
     "Telegram to Dropbox Upload Bot is a production-ready automation solution built using **n8n**, **JavaScript**, **Telegram Bot API**, **Dropbox API**, **PostgreSQL**, and **Railway**. It enables users to securely connect multiple Dropbox accounts using **OAuth 2.0**, manage linked accounts, and upload files directly from Telegram to their preferred Dropbox. The project features automatic access token refresh, interactive inline keyboards, persistent account management,, and a modular workflow design separating authentication and file upload logic. By combining low-code automation with custom JavaScript, this project demonstrates how scalable workflow automation and real-world API integrations can be implemented efficiently while maintaining flexibility, security, and a clean architecture suitable for production deployment.",
     github: "https://github.com/dhashwinkennedy/Google-Drive-Upload-Telegram-Bot",
     live: "https://t.me/Dropbox_uploader_testbot",
-    telegram: "https://t.me/Dropbox_uploader_testbot",
 
     // Replace with your own imported screenshot assets or URLs
     screenshots: [prj5S1, prj5S2, prj5S3],
-    warning:
-    "Demo Notice: This project is hosted on Railway's free tier for demonstration purposes. File uploads are limited to 30 MB, and occasional slower responses or brief downtime may occur due to free-tier hosting limitations",
+    warning:"",
     skills: [
       {
         name: "n8n",
