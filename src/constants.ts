@@ -126,11 +126,11 @@ export const projects: Project[] = [
     query: "telegram-Dropbox-uploader-bot",
     date: "July 23, 2026",
     shortDesc:
-    "A production-ready Telegram to Dropbox automation bot built using n8n, JavaScript, Telegram Bot API, Dropbox API, PostgreSQL, and Railway. It enables users to securely connect multiple Dropbox accounts via OAuth 2.0, upload files directly from Telegram, manage linked accounts, and automate cloud file transfers through a scalable low-code workflow.",
+    "A production-ready Telegram to Dropbox automation bot built using n8n, JavaScript, Telegram Bot API, Dropbox API and PostgreSQL. It enables users to securely connect multiple Dropbox accounts via OAuth 2.0, upload files directly from Telegram, manage linked accounts, and automate cloud file transfers through a scalable low-code workflow.",
     longDesc:
-    "Telegram to Dropbox Upload Bot is a production-ready automation solution built using **n8n**, **JavaScript**, **Telegram Bot API**, **Dropbox API**, **PostgreSQL**, and **Railway**. It enables users to securely connect multiple Dropbox accounts using **OAuth 2.0**, manage linked accounts, and upload files directly from Telegram to their preferred Dropbox. The project features automatic access token refresh, interactive inline keyboards, persistent account management,, and a modular workflow design separating authentication and file upload logic. By combining low-code automation with custom JavaScript, this project demonstrates how scalable workflow automation and real-world API integrations can be implemented efficiently while maintaining flexibility, security, and a clean architecture suitable for production deployment.",
+    "Telegram to Dropbox Upload Bot is a production-ready automation solution built using **n8n**, **JavaScript**, **Telegram Bot API**, **Dropbox API**, **PostgreSQL**,. It enables users to securely connect multiple Dropbox accounts using **OAuth 2.0**, manage linked accounts, and upload files directly from Telegram to their preferred Dropbox. The project features automatic access token refresh, interactive inline keyboards, persistent account management,, and a modular workflow design separating authentication and file upload logic. By combining low-code automation with custom JavaScript, this project demonstrates how scalable workflow automation and real-world API integrations can be implemented efficiently while maintaining flexibility, security, and a clean architecture suitable for production deployment.",
     github: "https://github.com/dhashwinkennedy/Google-Drive-Upload-Telegram-Bot",
-    live: "https://t.me/Dropbox_uploader_testbot",
+    live: "",
 
     // Replace with your own imported screenshot assets or URLs
     screenshots: [prj5S1, prj5S2, prj5S3],
@@ -148,10 +148,6 @@ export const projects: Project[] = [
       {
         name:"Dropbox API",
         iconUrl:"https://api.iconify.design/logos:dropbox.svg"
-      },
-      {
-        name:"Railway",
-        iconUrl:"https://cdn.simpleicons.org/railway"
       },{
         name:"Telegram",
         iconUrl:"https://cdn.simpleicons.org/telegram"
