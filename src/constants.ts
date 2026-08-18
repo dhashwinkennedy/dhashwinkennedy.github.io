@@ -82,13 +82,12 @@ export const projects: Project[] = [
     longDesc:
     "Built with **Python**, **FastAPI**, **MongoDB Atlas**, **Telegram Bot API**, and **Google Drive API**, this project enables users to securely upload files from Telegram directly to Google Drive. It supports multiple Google Drive accounts through **OAuth 2.0** authentication, allowing users to choose an account, rename files before upload, configure custom destination folders, and manage connected accounts—all from within Telegram. The backend implements automatic token refresh, HMAC-signed request validation, comprehensive logging, and robust error handling to ensure secure and reliable operations. The application is fully deployed using **Railway**, with both the FastAPI backend and Telegram bot hosted in the cloud for seamless access without any local setup.",
     github: "https://github.com/dhashwinkennedy/Google-Drive-Upload-Telegram-Bot",
-    live: "https://t.me/Gdrive_testbot",
-    telegram: "https://t.me/Gdrive_testbot",
+    live: "",
 
     // Replace with your own imported screenshot assets or URLs
     screenshots: [prj4S1, prj4S2, prj4S3],
     warning:
-    "Demo Notice: This project is hosted on Railway's free tier for demonstration purposes. File uploads are limited to 30 MB, and occasional slower responses or brief downtime may occur due to free-tier hosting limitations",
+    "",
     skills: [
       {
         name: "Python",
@@ -106,10 +105,6 @@ export const projects: Project[] = [
       {
         name:"MongoDB",
         iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-      },
-      {
-        name:"Railway",
-        iconUrl:"https://cdn.simpleicons.org/railway"
       },{
         name:"Telegram",
         iconUrl:"https://cdn.simpleicons.org/telegram"
