@@ -35,6 +35,10 @@ import prj5S1 from "./assets/screenshot/prj5S1.png";
 import prj5S2 from "./assets/screenshot/prj5S2.png";
 import prj5S3 from "./assets/screenshot/prj5S3.png";
 
+import prj6Image from "./assets/prj6.png";
+import prj6S1 from "./assets/screenshot/prj6S1.png";
+import prj6S2 from "./assets/screenshot/prj6S2.png";
+import prj6S3 from "./assets/screenshot/prj6S3.png";
 
 
 import FastAPICertImg from "./assets/udemy-FastAPI.jpg";
@@ -70,7 +74,54 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: 6,
+    image: prj6Image,
+    title: "ReWire Give Dead Electronics a Second-Life",
+    query: "rewire-give-dead-electronics-a-second-life",
+    date: "October 05, 2026",
+    shortDesc:
+      "ReWire is an AI-powered e-waste repurposing platform. Snap a photo or list your parts, and it identifies components, salvages old devices into reusable pieces, and matches them to feasible builds with a feasibility score, missing-parts list and waste-reduction estimate. **React + FastAPI + MobileNetV3 + Ollama.**",
+    longDesc:
+      "**ReWire** is an AI-powered platform that gives dead electronics a second life. Instead of treating old devices as trash, it shows students and makers what they can actually build from the parts they already have. Users list components or upload a photo, and a fine-tuned **MobileNetV3** model identifies them. Old devices are broken into salvageable parts, each marked working, unverified or defective. A deterministic, capability-aware engine then scores every project, flags missing parts, suggests compatible substitutes and estimates the e-waste diverted in grams. An optional AI mode adds live **Tavily research** and **local Ollama** reranking. Built with **React, Vite, FastAPI and PyTorch**, with circuit breakers, rate limiting and structured logging.",
+    github: "https://github.com/dhashwinkennedy/ReWire-Give-Dead-Electronics-a-Second-Life",
+    live: "",
+    telegram: "",
 
+    // Replace with your own imported screenshot assets or URLs
+    screenshots: [prj6S1, prj6S2, prj6S3],
+    warning:
+      "Hackathon prototype: the component dataset and the MobileNetV3 model are small and built for demo purposes only. Detection may misidentify parts, so always verify components manually before building.",
+    skills: [
+      {
+        name: "Python",
+        iconUrl:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "FastAPI",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+      },
+      {
+        name: "React",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+      },
+      {
+        name: "vite",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg"
+      },
+      {
+        name: "PyTorch",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+      }, {
+        name: "LangChain",
+        iconUrl: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/langchain-color.svg "
+      }, {
+        name: "Tavily",
+        iconUrl: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/tavily-color.svg"
+      }
+    ],
+  },
   {
     id: 4,
     image: prj4Image,
@@ -306,7 +357,7 @@ export const skills = [
   },
   {
     category: "Tools",
-    items: ["Git & GitHub", "Cloudinary API", "Docker"],
+    items: ["Git & GitHub", "Cloudinary API", "LangChain", "Tavily Search"],
     icon: React.createElement(Wrench, { size: 20 }),
   },
   {
