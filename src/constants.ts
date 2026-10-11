@@ -35,6 +35,10 @@ import prj5S1 from "./assets/screenshot/prj5S1.png";
 import prj5S2 from "./assets/screenshot/prj5S2.png";
 import prj5S3 from "./assets/screenshot/prj5S3.png";
 
+import prj6Image from "./assets/prj6.png";
+import prj6S1 from "./assets/screenshot/prj6S1.png";
+import prj6S2 from "./assets/screenshot/prj6S2.png";
+import prj6S3 from "./assets/screenshot/prj6S3.png";
 
 
 import FastAPICertImg from "./assets/udemy-FastAPI.jpg";
@@ -70,24 +74,24 @@ export interface Project {
 }
 
 export const projects: Project[] = [
- 
-    {
-    id: 4,
-    image: prj4Image,
-    title: "Telegram Google Drive Uploader Bot",
-    query: "telegram-google-drive-uploader-bot",
-    date: "July 20, 2026",
+  {
+    id: 6,
+    image: prj6Image,
+    title: "ReWire Give Dead Electronics a Second-Life",
+    query: "rewire-give-dead-electronics-a-second-life",
+    date: "October 05, 2026",
     shortDesc:
-    "Telegram Google Drive Bot is a full-stack automation project that lets users securely connect multiple Google Drive accounts and upload files directly from Telegram. It features OAuth 2.0 authentication, account management, custom destination folders, file renaming, and a FastAPI backend deployed to the cloud.",
+      "ReWire is an AI-powered e-waste repurposing platform. Snap a photo or list your parts, and it identifies components, salvages old devices into reusable pieces, and matches them to feasible builds with a feasibility score, missing-parts list and waste-reduction estimate. **React + FastAPI + MobileNetV3 + Ollama.**",
     longDesc:
-    "Built with **Python**, **FastAPI**, **MongoDB Atlas**, **Telegram Bot API**, and **Google Drive API**, this project enables users to securely upload files from Telegram directly to Google Drive. It supports multiple Google Drive accounts through **OAuth 2.0** authentication, allowing users to choose an account, rename files before upload, configure custom destination folders, and manage connected accounts—all from within Telegram. The backend implements automatic token refresh, HMAC-signed request validation, comprehensive logging, and robust error handling to ensure secure and reliable operations. The application is fully deployed using **Railway**, with both the FastAPI backend and Telegram bot hosted in the cloud for seamless access without any local setup.",
-    github: "https://github.com/dhashwinkennedy/Google-Drive-Upload-Telegram-Bot",
+      "**ReWire** is an AI-powered platform that gives dead electronics a second life. Instead of treating old devices as trash, it shows students and makers what they can actually build from the parts they already have. Users list components or upload a photo, and a fine-tuned **MobileNetV3** model identifies them. Old devices are broken into salvageable parts, each marked working, unverified or defective. A deterministic, capability-aware engine then scores every project, flags missing parts, suggests compatible substitutes and estimates the e-waste diverted in grams. An optional AI mode adds live **Tavily research** and **local Ollama** reranking. Built with **React, Vite, FastAPI and PyTorch**, with circuit breakers, rate limiting and structured logging.",
+    github: "https://github.com/dhashwinkennedy/ReWire-Give-Dead-Electronics-a-Second-Life",
     live: "",
+    telegram: "",
 
     // Replace with your own imported screenshot assets or URLs
-    screenshots: [prj4S1, prj4S2, prj4S3],
+    screenshots: [prj6S1, prj6S2, prj6S3],
     warning:
-    "",
+      "Hackathon prototype: the component dataset and the MobileNetV3 model are small and built for demo purposes only. Detection may misidentify parts, so always verify components manually before building.",
     skills: [
       {
         name: "Python",
@@ -95,41 +99,88 @@ export const projects: Project[] = [
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
       {
-        name:"FastAPI",
-        iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+        name: "FastAPI",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
       },
       {
-        name:"Google Drive API",
-        iconUrl:"https://api.iconify.design/logos:google-drive.svg"
+        name: "React",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
       },
       {
-        name:"MongoDB",
-        iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-      },{
-        name:"Telegram",
-        iconUrl:"https://cdn.simpleicons.org/telegram"
-      },{
-        name:"Google OAUTH 2.0",
-        iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+        name: "vite",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg"
+      },
+      {
+        name: "PyTorch",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+      }, {
+        name: "LangChain",
+        iconUrl: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/langchain-color.svg "
+      }, {
+        name: "Tavily",
+        iconUrl: "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/tavily-color.svg"
       }
     ],
   },
-   {
+  {
+    id: 4,
+    image: prj4Image,
+    title: "Telegram Google Drive Uploader Bot",
+    query: "telegram-google-drive-uploader-bot",
+    date: "July 20, 2026",
+    shortDesc:
+      "Telegram Google Drive Bot is a full-stack automation project that lets users securely connect multiple Google Drive accounts and upload files directly from Telegram. It features OAuth 2.0 authentication, account management, custom destination folders, file renaming, and a FastAPI backend deployed to the cloud.",
+    longDesc:
+      "Built with **Python**, **FastAPI**, **MongoDB Atlas**, **Telegram Bot API**, and **Google Drive API**, this project enables users to securely upload files from Telegram directly to Google Drive. It supports multiple Google Drive accounts through **OAuth 2.0** authentication, allowing users to choose an account, rename files before upload, configure custom destination folders, and manage connected accounts—all from within Telegram. The backend implements automatic token refresh, HMAC-signed request validation, comprehensive logging, and robust error handling to ensure secure and reliable operations. The application is fully deployed using **Railway**, with both the FastAPI backend and Telegram bot hosted in the cloud for seamless access without any local setup.",
+    github: "https://github.com/dhashwinkennedy/Google-Drive-Upload-Telegram-Bot",
+    live: "",
+
+    // Replace with your own imported screenshot assets or URLs
+    screenshots: [prj4S1, prj4S2, prj4S3],
+    warning:
+      "",
+    skills: [
+      {
+        name: "Python",
+        iconUrl:
+          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "FastAPI",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+      },
+      {
+        name: "Google Drive API",
+        iconUrl: "https://api.iconify.design/logos:google-drive.svg"
+      },
+      {
+        name: "MongoDB",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+      }, {
+        name: "Telegram",
+        iconUrl: "https://cdn.simpleicons.org/telegram"
+      }, {
+        name: "Google OAUTH 2.0",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+      }
+    ],
+  },
+  {
     id: 5,
     image: prj5Image,
     title: "Telegram Dropbox Uploader Bot",
     query: "telegram-Dropbox-uploader-bot",
     date: "July 23, 2026",
     shortDesc:
-    "A production-ready Telegram to Dropbox automation bot built using n8n, JavaScript, Telegram Bot API, Dropbox API and PostgreSQL. It enables users to securely connect multiple Dropbox accounts via OAuth 2.0, upload files directly from Telegram, manage linked accounts, and automate cloud file transfers through a scalable low-code workflow.",
+      "A production-ready Telegram to Dropbox automation bot built using n8n, JavaScript, Telegram Bot API, Dropbox API and PostgreSQL. It enables users to securely connect multiple Dropbox accounts via OAuth 2.0, upload files directly from Telegram, manage linked accounts, and automate cloud file transfers through a scalable low-code workflow.",
     longDesc:
-    "Telegram to Dropbox Upload Bot is a production-ready automation solution built using **n8n**, **JavaScript**, **Telegram Bot API**, **Dropbox API**, **PostgreSQL**,. It enables users to securely connect multiple Dropbox accounts using **OAuth 2.0**, manage linked accounts, and upload files directly from Telegram to their preferred Dropbox. The project features automatic access token refresh, interactive inline keyboards, persistent account management,, and a modular workflow design separating authentication and file upload logic. By combining low-code automation with custom JavaScript, this project demonstrates how scalable workflow automation and real-world API integrations can be implemented efficiently while maintaining flexibility, security, and a clean architecture suitable for production deployment.",
+      "Telegram to Dropbox Upload Bot is a production-ready automation solution built using **n8n**, **JavaScript**, **Telegram Bot API**, **Dropbox API**, **PostgreSQL**,. It enables users to securely connect multiple Dropbox accounts using **OAuth 2.0**, manage linked accounts, and upload files directly from Telegram to their preferred Dropbox. The project features automatic access token refresh, interactive inline keyboards, persistent account management,, and a modular workflow design separating authentication and file upload logic. By combining low-code automation with custom JavaScript, this project demonstrates how scalable workflow automation and real-world API integrations can be implemented efficiently while maintaining flexibility, security, and a clean architecture suitable for production deployment.",
     github: "https://github.com/dhashwinkennedy/Google-Drive-Upload-Telegram-Bot",
     live: "",
 
     // Replace with your own imported screenshot assets or URLs
     screenshots: [prj5S1, prj5S2, prj5S3],
-    warning:"",
+    warning: "",
     skills: [
       {
         name: "n8n",
@@ -137,15 +188,15 @@ export const projects: Project[] = [
           "https://cdn.simpleicons.org/n8n",
       },
       {
-        name:"PostgreSQL",
-        iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+        name: "PostgreSQL",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
       },
       {
-        name:"Dropbox API",
-        iconUrl:"https://api.iconify.design/logos:dropbox.svg"
-      },{
-        name:"Telegram",
-        iconUrl:"https://cdn.simpleicons.org/telegram"
+        name: "Dropbox API",
+        iconUrl: "https://api.iconify.design/logos:dropbox.svg"
+      }, {
+        name: "Telegram",
+        iconUrl: "https://cdn.simpleicons.org/telegram"
       }
     ],
   },
@@ -154,7 +205,7 @@ export const projects: Project[] = [
     image: prj1Image,
     title: "Ecommerce Electronics Website",
     query: "ecommerce-electronics-website",
-    date:"March 27, 2026",
+    date: "March 27, 2026",
     shortDesc:
       "A full-stack ecommerce platform built using the MERN stack, featuring product listing, cart, orders, user profiles, and wishlist functionality.",
     longDesc:
@@ -199,22 +250,22 @@ export const projects: Project[] = [
       { name: "Express.js", iconUrl: "" },
     ],
   },
-   {
+  {
     id: 2,
     image: prj2Image,
     title: "Daily Price Monitoring & Data Extraction Engine for Amazon Search Results",
     query: "amazon-price-tracker",
     date: "April 30, 2026",
     shortDesc:
-    "An automated Amazon search scraper built with Python, Selenium, and BS4. It extracts ASINs and real-time pricing data across multiple pages and stores it in a structured JSON format for historical tracking.",
+      "An automated Amazon search scraper built with Python, Selenium, and BS4. It extracts ASINs and real-time pricing data across multiple pages and stores it in a structured JSON format for historical tracking.",
     longDesc:
-    "This Python project is an automated tool that scrapes Amazon search results to collect product ASINs and their current prices. Using **Selenium** and **BeautifulSoup**, it navigates through multiple pages of search results and saves the data into a structured **JSON** file. It is designed to help users track price changes over time and features an automatic driver setup for easy installation.",
+      "This Python project is an automated tool that scrapes Amazon search results to collect product ASINs and their current prices. Using **Selenium** and **BeautifulSoup**, it navigates through multiple pages of search results and saves the data into a structured **JSON** file. It is designed to help users track price changes over time and features an automatic driver setup for easy installation.",
     github: "https://github.com/dhashwinkennedy/Amazon-Search-Price-Tracker-An-Automated-Data-Extraction-with-Selenium-BS4",
     live: "",
     // Replace with your own imported screenshot assets or URLs
     screenshots: [prj2S1, prj2S2, prj2S3],
     warning:
-    "This project is strictly for educational and learning purposes. It demonstrates web scraping and automation concepts using Selenium. It is not intended for commercial use. Users are responsible for complying with Amazon's Terms of Service and legal requirements.",
+      "This project is strictly for educational and learning purposes. It demonstrates web scraping and automation concepts using Selenium. It is not intended for commercial use. Users are responsible for complying with Amazon's Terms of Service and legal requirements.",
     skills: [
       {
         name: "Python",
@@ -222,31 +273,31 @@ export const projects: Project[] = [
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
       {
-        name:"Selenium WebDriver",
-        iconUrl:"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
+        name: "Selenium WebDriver",
+        iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg"
       },
       {
-        name:"Automation",
-        iconUrl:""
+        name: "Automation",
+        iconUrl: ""
       },
       {
-        name:"BeautifulSoup4",
-        iconUrl:""
-      },{
-        name:"webdriver-manager",
-        iconUrl:""
+        name: "BeautifulSoup4",
+        iconUrl: ""
+      }, {
+        name: "webdriver-manager",
+        iconUrl: ""
       }
     ],
-  },{
+  }, {
     id: 3,
     image: prj3Image,
     title: "AI-Powered Social Media Quote Publisher ",
     query: "ai-powered-social-media-quote-publisher",
     date: "June 06, 2026",
-    shortDesc: 
-    "Automate your social media with this Python pipeline. It uses Google Gemini to generate quotes, Pillow to design graphics, Cloudinary for hosting, and the Meta Graph API to auto-publish to Instagram & Facebook.",
+    shortDesc:
+      "Automate your social media with this Python pipeline. It uses Google Gemini to generate quotes, Pillow to design graphics, Cloudinary for hosting, and the Meta Graph API to auto-publish to Instagram & Facebook.",
     longDesc:
-    "The AI-Powered Social Media Quote Publisher is a fully automated content engine that handles creation to distribution. First, the Google Gemini API dynamically generates motivational morning quotes. Next, the Pillow library programmatically overlays this text onto a pre-designed image template. The final graphic is uploaded to Cloudinary to secure a public CDN link. Finally, the Meta Graph API uses this link to cross-publish the post to Instagram and Facebook simultaneously.",
+      "The AI-Powered Social Media Quote Publisher is a fully automated content engine that handles creation to distribution. First, the Google Gemini API dynamically generates motivational morning quotes. Next, the Pillow library programmatically overlays this text onto a pre-designed image template. The final graphic is uploaded to Cloudinary to secure a public CDN link. Finally, the Meta Graph API uses this link to cross-publish the post to Instagram and Facebook simultaneously.",
     github: "https://github.com/dhashwinkennedy/AI-Powered-Social-Media-Quote-Publisher",
     live: "",
     // Replace with your own imported screenshot assets or URLs
@@ -259,26 +310,26 @@ export const projects: Project[] = [
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       },
       {
-        name:"Meta Graph API",
-        iconUrl:"https://api.iconify.design/simple-icons:meta.svg?color=%230866FF"
+        name: "Meta Graph API",
+        iconUrl: "https://api.iconify.design/simple-icons:meta.svg?color=%230866FF"
       },
       {
-        name:"Google Gemini API",
-        iconUrl:"https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.svg"
+        name: "Google Gemini API",
+        iconUrl: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.svg"
       },
       {
-        name:"Pillow Image Processing",
-        iconUrl:"https://raw.githubusercontent.com/python-pillow/pillow-logo/main/pillow-logo-248x250.png"
-      },{
-        name:"Cloudinary Hosting",
-        iconUrl:"https://api.iconify.design/simple-icons:cloudinary.svg?color=%233448C5"
-      },{
-        name:"Automation",
-        iconUrl:""
+        name: "Pillow Image Processing",
+        iconUrl: "https://raw.githubusercontent.com/python-pillow/pillow-logo/main/pillow-logo-248x250.png"
+      }, {
+        name: "Cloudinary Hosting",
+        iconUrl: "https://api.iconify.design/simple-icons:cloudinary.svg?color=%233448C5"
+      }, {
+        name: "Automation",
+        iconUrl: ""
       },
     ],
   },
-  
+
   // Add more projects here — just import the image at the top and set image: yourImport
 ];
 
@@ -286,17 +337,17 @@ export const projects: Project[] = [
 export const skills = [
   {
     category: "AI & Chatbots",
-    items: ["Google Gemini API", "OpenAI API", "Claude API" ,"Telegram Bots","Discord Bots","WhatsApp Business API"],
+    items: ["Google Gemini API", "OpenAI API", "Claude API", "Telegram Bots", "Discord Bots", "WhatsApp Business API"],
     icon: React.createElement(Bot, { size: 20 }),
   },
   {
     category: "Automation",
-    items: ["n8n", "Selenium", "Python Automation","OAUTH 2.0","Cron Jobs","Webhooks"],
+    items: ["n8n", "Selenium", "Python Automation", "OAUTH 2.0", "Cron Jobs", "Webhooks"],
     icon: React.createElement(Workflow, { size: 20 }),
   },
   {
     category: "Backend",
-    items: ["Python FastAPI", "Node.js", "Express.js","SQLAlchemy"],
+    items: ["Python FastAPI", "Node.js", "Express.js", "SQLAlchemy"],
     icon: React.createElement(Server, { size: 20 }),
   },
   {
@@ -306,7 +357,7 @@ export const skills = [
   },
   {
     category: "Tools",
-    items: ["Git & GitHub", "Cloudinary API", "Docker"],
+    items: ["Git & GitHub", "Cloudinary API", "LangChain", "Tavily Search"],
     icon: React.createElement(Wrench, { size: 20 }),
   },
   {
@@ -340,7 +391,7 @@ export const certificates = [
     image: FastAPICertImg,
     imageClass: "udemy",
     title: "FastAPI - The Complete Course 2026 (Beginner + Advanced)",
-    date : "July 12, 2026",
+    date: "July 12, 2026",
     description:
       "Completed a comprehensive FastAPI course covering REST APIs, JWT authentication, SQLAlchemy, testing, and deployment.",
     issuer: "Udemy",
@@ -357,16 +408,16 @@ export const certificates = [
         iconUrl:
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
       },
-      
-      
+
+
     ],
-    
-  },  {
+
+  }, {
     id: 8,
     image: ChatbotCertImg,
     imageClass: "udemy",
     title: "Chatbot - The Development Guide 2026 (Beginner + Advanced)",
-    date : "July 15, 2026",
+    date: "July 15, 2026",
     description:
       "Completed an in-depth chatbot development course covering AI chatbots, integrations, automation workflows, and real-world implementations.",
     issuer: "Udemy",
@@ -384,20 +435,20 @@ export const certificates = [
           "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
       },
       {
-        name:"OpenAI API",
-        iconUrl:"https://api.iconify.design/logos:openai-icon.svg"
+        name: "OpenAI API",
+        iconUrl: "https://api.iconify.design/logos:openai-icon.svg"
       }
-      
-      
+
+
     ],
-    
+
   },
   {
     id: 2,
     image: n8nCertImg,
     imageClass: "udemy",
     title: "Complete N8N and AI Automation Masterclass",
-    date : "July 13, 2026",
+    date: "July 13, 2026",
     description:
       "Learned n8n automation, AI workflows, API integrations, webhooks, and no-code workflow orchestration",
     issuer: "Udemy",
@@ -409,16 +460,16 @@ export const certificates = [
         iconUrl:
           "https://cdn.simpleicons.org/n8n",
       },
-      
+
     ],
-    
+
   }
-  ,{
+  , {
     id: 3,
     image: MERNCertImg,
     imageClass: "udemy",
     title: "React, NodeJS, Express & MongoDB - The MERN Fullstack Guide",
-    date : "September 13, 2025",
+    date: "September 13, 2025",
     description:
       "Completed a full-stack development course using the MERN stack, covering React, Node.js, Express, and MongoDB.",
     issuer: "Udemy",
@@ -458,8 +509,8 @@ export const certificates = [
       { name: "Express.js", iconUrl: "" },
     ],
   },
-  
-  
+
+
   {
     id: 4,
     image: HackeRankPythonBasicCertImg,
@@ -483,7 +534,7 @@ export const certificates = [
     image: GuviPythonCertImg,
     imageClass: "guvi",
     title: "Python Certification of Completion",
-    date : "May 18 2024",
+    date: "May 18 2024",
     description:
       "Completed a certification course covering core Python programming concepts and applications.",
     issuer: "HCLGUVI",
@@ -542,7 +593,7 @@ export const certificates = [
 
 export const aboutMe = {
   tagline:
-  `**I am a B.Tech Computer Science and Engineering student at B.S. Abdur Rahman Crescent Institute of Science and Technology, passionate about building practical software solutions and continuously expanding my knowledge in modern technologies.**`,
+    `**I am a B.Tech Computer Science and Engineering student at B.S. Abdur Rahman Crescent Institute of Science and Technology, passionate about building practical software solutions and continuously expanding my knowledge in modern technologies.**`,
   description:
     `My primary interests lie in **Python Automation, AI Chatbot Development, Backend Development, and AI Workflow Automation**. I enjoy designing scalable automation systems, integrating third-party APIs, and developing real-world applications that solve practical problems. Alongside automation, I have experience building full-stack web applications with the **MERN stack** and Low Code Automations like **n8n**, developing REST APIs, and deploying cloud-based applications.
 

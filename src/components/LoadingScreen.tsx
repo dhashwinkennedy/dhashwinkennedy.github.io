@@ -19,7 +19,7 @@ export default function LoadingScreen() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.45, ease: "easeOut" }}
       >
-        DK
+        <img src="/favicon.svg" alt="R Dhashwin Kennedy logo" />
       </motion.div>
       <div className="loading-copy">
         <p>R Dhashwin Kennedy</p>
