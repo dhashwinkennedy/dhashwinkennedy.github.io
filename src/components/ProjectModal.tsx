@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { localLogoUrl } from "../constants";
 import HighlightedText from "./HighlightedText";
 import ShareButton from "./ShareButton";
 
@@ -133,9 +134,10 @@ export default function ProjectModal({ project, onClose }: Props) {
                   <div key={i} className="skill-badge">
                     {skill.iconUrl && (
                       <img
-                        src={skill.iconUrl}
+                        src={localLogoUrl(skill.iconUrl)}
                         alt={skill.name}
                         className="skill-icon"
+                        onError={(event) => event.currentTarget.remove()}
                       />
                     )}
                     <span className="skill-name">{skill.name}</span>
