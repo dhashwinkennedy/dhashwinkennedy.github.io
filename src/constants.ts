@@ -57,6 +57,48 @@ export interface ProjectSkill {
   iconUrl: string;
 }
 
+const LOCAL_LOGOS = "/assets/logos/";
+
+/**
+ * Keeps legacy content entries compatible while ensuring the browser always
+ * renders the checked-in copy of each logo instead of requesting a third-party
+ * CDN at runtime.
+ */
+export function localLogoUrl(iconUrl: string): string {
+  const fileByRemoteUrl: Record<string, string> = {
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg": "python-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg": "fastapi-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg": "react-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg": "vite-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg": "pytorch-original.svg",
+    "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/langchain-color.svg": "langchain-color.svg",
+    "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/tavily-color.svg": "tavily-color.svg",
+    "https://api.iconify.design/logos:google-drive.svg": "google-drive.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg": "mongodb-original.svg",
+    "https://cdn.simpleicons.org/telegram": "telegram.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg": "google-original.svg",
+    "https://cdn.simpleicons.org/n8n": "n8n.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg": "postgresql-original.svg",
+    "https://api.iconify.design/logos:dropbox.svg": "dropbox.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg": "html5-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg": "css3-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg": "javascript-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg": "nodejs-original.svg",
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg": "selenium-original.svg",
+    "https://api.iconify.design/simple-icons:meta.svg?color=%230866FF": "meta.svg",
+    "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.svg": "google-gemini.svg",
+    "https://raw.githubusercontent.com/python-pillow/pillow-logo/main/pillow-logo-248x250.png": "pillow-logo.png",
+    "https://api.iconify.design/simple-icons:cloudinary.svg?color=%233448C5": "cloudinary.svg",
+    "https://api.iconify.design/logos:openai-icon.svg": "openai-icon.svg",
+    "https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/cog.svg": "cog.svg",
+    "https://api.iconify.design/lucide:brain-circuit.svg": "brain-circuit.svg",
+    "https://api.iconify.design/lucide:bot.svg": "bot.svg",
+  };
+
+  const fileName = fileByRemoteUrl[iconUrl.trim()];
+  return fileName ? `${LOCAL_LOGOS}${fileName}` : iconUrl;
+}
+
 export interface Project {
   id: number;
   image: string;

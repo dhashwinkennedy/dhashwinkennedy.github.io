@@ -1,3 +1,5 @@
+import { localLogoUrl } from "../constants";
+
 interface SkillBadge {
   name: string;
   iconUrl: string;
@@ -55,9 +57,10 @@ export default function AboutSection({ about }: Props) {
             <div key={i} className="skill-badge">
               {item.iconUrl && (
                 <img
-                  src={item.iconUrl}
+                  src={localLogoUrl(item.iconUrl)}
                   alt={item.name}
                   className="skill-icon"
+                  onError={(event) => event.currentTarget.remove()}
                 />
               )}
               <span className="skill-name">{item.name}</span>
@@ -73,9 +76,10 @@ export default function AboutSection({ about }: Props) {
             <div key={i} className="skill-badge">
               {item.iconUrl && (
                 <img
-                  src={item.iconUrl}
+                  src={localLogoUrl(item.iconUrl)}
                   alt={item.name}
                   className="skill-icon"
+                  onError={(event) => event.currentTarget.remove()}
                 />
               )}
               <span className="skill-name">{item.name}</span>

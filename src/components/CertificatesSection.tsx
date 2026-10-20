@@ -1,3 +1,5 @@
+import { localLogoUrl } from "../constants";
+
 interface Skill {
   name: string;
   iconUrl: string;
@@ -57,9 +59,10 @@ export default function CertificatesSection({ certificates }: Props) {
                 <div key={i} className="skill-badge">
                   {skill.iconUrl && (
                     <img
-                      src={skill.iconUrl}
+                      src={localLogoUrl(skill.iconUrl)}
                       alt={skill.name}
                       className="skill-icon"
+                      onError={(event) => event.currentTarget.remove()}
                     />
                   )}
                   <span className="skill-name">{skill.name}</span>
