@@ -50,6 +50,10 @@ import GuviJavaScriptCertImg from "./assets/GUVI-JavaScript.png";
 import GuviHTMLCSSCertImg from "./assets/GUVI-HTMLCSS.png";
 
 import HackeRankPythonBasicCertImg from "./assets/HACKERRANK-Python.png";
+import IndustrIxThumbnail from "./assets/achievements/INDUSTRIX_1.jpg";
+import IndustrIxPhoto2 from "./assets/achievements/INDUSTRIX_2.jpg";
+import IndustrIxPhoto3 from "./assets/achievements/INDUSTRIX_3.jpg";
+import IndustrIxPhoto4 from "./assets/achievements/INDUSTRIX_4.jpg";
 
 // ─── PROJECTS ────────────────────────────────────────────────────────────────
 export interface ProjectSkill {
@@ -373,6 +377,40 @@ export const projects: Project[] = [
   },
 
   // Add more projects here — just import the image at the top and set image: yourImport
+];
+
+// ─── ACHIEVEMENTS ────────────────────────────────────────────────────────────
+export interface AchievementLink {
+  label: string;
+  url: string;
+  type?: "github" | "live" | "external";
+}
+
+export interface Achievement {
+  id: string;
+  title: string;
+  thumbnail?: string;
+  shortDescription: string;
+  longDescription?: string;
+  images?: string[];
+  links?: AchievementLink[];
+}
+
+export const achievements: Achievement[] = [
+  {
+    id: "industrix-hackathon",
+    title: "First Place — INDUSTRIX Hackathon",
+    thumbnail: IndustrIxThumbnail,
+    shortDescription:
+      "Awarded First Place at the INDUSTRIX Hackathon as part of Team AXIOMX.",
+    longDescription:
+      "Engineered an automated industrial solution under rapid hackathon deadlines. Collaborated closely with Team AXIOMX to conceptualize, prototype, and demonstrate the solution to the judging panel, securing First Place.",
+    images: [
+      IndustrIxPhoto2,
+      IndustrIxPhoto3,
+      IndustrIxPhoto4,
+    ],
+  },
 ];
 
 // ─── SKILLS (Skills tab) ──────────────────────────────────────────────────────

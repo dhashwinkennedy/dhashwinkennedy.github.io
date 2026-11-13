@@ -17,6 +17,15 @@ This website is designed to be a central hub for my professional identity. It fe
 
 - **Contact Integration:** Direct links to my professional social profiles.
 
+- **Achievements & Awards:** A data-driven awards gallery with accessible detail popups, image lightboxes, and PDF certificate links.
+
+## Adding or updating achievements
+
+1. Add an object to the `achievements` array in [`src/constants.ts`](src/constants.ts). Use its `id` as a unique identifier.
+2. Put images under `src/assets/achievements/` or `public/assets/achievements/<achievement-id>/`.
+3. Set `title`, `thumbnail`, `shortDescription`, `longDescription`, and `images` (array of photos & certificates).
+4. Users can preview photos in the modal and click to expand them into a full-screen lightbox.
+
 ## 🛠️ Tech Stack
 
 The project is built using modern web technologies:

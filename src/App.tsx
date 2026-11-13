@@ -11,12 +11,16 @@ import {
   Grid3X3,
   Cpu,
   Bookmark,
+  Trophy,
   Mail,
   Instagram,
 } from "lucide-react";
 import ReactGA from "react-ga4";
 import ProfileLogo from "./assets/profile-logo.png";
-import { projects, skills, certificates, aboutMe, education } from "./constants";
+import { achievements, projects, skills, certificates, aboutMe, education } from "./constants";
+import type { Achievement } from "./constants";
+import AchievementsSection from "./components/AchievementsSection";
+import AchievementModal from "./components/AchievementModal";
 import ProjectCard from "./components/ProjectCard";
 import ProjectModal from "./components/ProjectModal";
 import SkillsSection from "./components/SkillsSection";
@@ -33,7 +37,7 @@ const copyEmail = () => {
   navigator.clipboard.writeText(MY_EMAIL).catch(() => {});
 };
 
-type Tab = "projects" | "skills" | "certificates";
+type Tab = "projects" | "achievements" | "skills" | "certificates";
 
 const PREVIEW_COUNT = 5;
 const PROJECT_QUERY_PARAM = "project";
@@ -85,6 +89,7 @@ export default function App() {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCerts, setShowAllCerts] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
   const [highlightedProjectQuery, setHighlightedProjectQuery] = useState<string | null>(null);
   const [isAppReady, setIsAppReady] = useState(false);
   const deepLinkTimers = useRef<number[]>([]);
@@ -94,6 +99,7 @@ export default function App() {
 
   const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
     { id: "projects",     label: "Projects",     icon: <Grid3X3 size={12} /> },
+    { id: "achievements", label: "Achievements", icon: <Trophy size={12} /> },
     { id: "certificates", label: "Certificates", icon: <Bookmark size={12} /> },
     { id: "skills",       label: "Skills",       icon: <Cpu size={12} /> },
   ];
@@ -325,6 +331,13 @@ export default function App() {
                 </div>
               )}
 
+              {activeTab === "achievements" && (
+                <AchievementsSection
+                  achievements={achievements}
+                  onOpen={setSelectedAchievement}
+                />
+              )}
+
               {activeTab === "skills" && (
                 <div className="skills-education-layout">
                   <section className="skills-education-section">
@@ -410,6 +423,14 @@ export default function App() {
       {selectedProject && (
         <ProjectModal project={selectedProject} onClose={closeProject} />
       )}
+      <AnimatePresence>
+        {selectedAchievement && (
+          <AchievementModal
+            achievement={selectedAchievement}
+            onClose={() => setSelectedAchievement(null)}
+          />
+        )}
+      </AnimatePresence>
       </motion.div>
     </>
   );
