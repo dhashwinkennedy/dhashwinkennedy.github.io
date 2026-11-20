@@ -3,20 +3,24 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useCallback, useState, useEffect, useRef, type ReactNode } from "react";
+import { motion, AnimatePresence, MotionConfig } from "motion/react";
 import {
   Github,
   Linkedin,
   Grid3X3,
   Cpu,
   Bookmark,
+  Trophy,
   Mail,
   Instagram,
 } from "lucide-react";
 import ReactGA from "react-ga4";
-import ProfileLogo from "./assets/profile-logo.png";
-import { projects, skills, certificates, aboutMe, education } from "./constants";
+import ProfileLogo from "./assets/profile-logo.jpg";
+import { achievements, projects, skills, certificates, aboutMe, education } from "./constants";
+import type { Achievement } from "./constants";
+import AchievementsSection from "./components/AchievementsSection";
+import AchievementModal from "./components/AchievementModal";
 import ProjectCard from "./components/ProjectCard";
 import ProjectModal from "./components/ProjectModal";
 import SkillsSection from "./components/SkillsSection";
@@ -24,19 +28,36 @@ import CertificatesSection from "./components/CertificatesSection";
 import AboutSection from "./components/AboutSection";
 import EducationSection from "./components/EducationSection";
 import LoadingScreen from "./components/LoadingScreen";
+import {
+  SECTION_IDS,
+  currentLocation,
+  navigateToSection,
+  pushAchievementUrl,
+  pushProjectUrl,
+  replaceWithSection,
+  resolveRoute,
+  type Route,
+  type Section,
+} from "./lib/routing";
 
 import "./app.css";
 
 const MY_EMAIL = "dhashwinkennedy@hotmail.com";
 
-const copyEmail = () => {
-  navigator.clipboard.writeText(MY_EMAIL).catch(() => {});
+/** Initialised once at module scope — never inside the render body. */
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+if (GA_MEASUREMENT_ID) {
+  ReactGA.initialize(GA_MEASUREMENT_ID);
+}
+
+const trackEvent = (action: string, label?: string) => {
+  if (!GA_MEASUREMENT_ID) return;
+  ReactGA.event({ category: "portfolio", action, label });
 };
 
-type Tab = "projects" | "skills" | "certificates";
+type Tab = Section;
 
 const PREVIEW_COUNT = 5;
-const PROJECT_QUERY_PARAM = "project";
 
 type Project = (typeof projects)[number];
 
@@ -48,62 +69,91 @@ const preloadImage = (source: string) =>
     image.src = source;
   });
 
-const getProjectFromUrl = () => {
-  const projectQuery = new URLSearchParams(window.location.search).get(
-    PROJECT_QUERY_PARAM,
-  );
+/**
+ * Waits for a target to mount without guessing a delay. Frame-based instead of
+ * time-based so a link opened in a background tab still scrolls once visible.
+ */
+const waitForElement = (
+  id: string,
+  maxFrames = 240,
+): Promise<HTMLElement | null> =>
+  new Promise((resolve) => {
+    let frames = 0;
 
-  return projects.find((project) => project.query === projectQuery) ?? null;
-};
+    const check = () => {
+      const element = document.getElementById(id);
+      if (element) {
+        resolve(element);
+        return;
+      }
+      if (frames >= maxFrames) {
+        resolve(null);
+        return;
+      }
+      frames += 1;
+      requestAnimationFrame(check);
+    };
 
-const updateProjectUrl = (query?: string, replace = false) => {
-  const url = new URL(window.location.href);
+    check();
+  });
 
-  if (query) {
-    url.searchParams.set(PROJECT_QUERY_PARAM, query);
-  } else {
-    url.searchParams.delete(PROJECT_QUERY_PARAM);
-  }
-
-  window.history[replace ? "replaceState" : "pushState"](
-    window.history.state,
-    "",
-    `${url.pathname}${url.search}${url.hash}`,
-  );
+const scrollToElement = (element: HTMLElement, block: ScrollLogicalPosition) => {
+  const reduceMotion =
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+  element.scrollIntoView({
+    behavior: reduceMotion ? "auto" : "smooth",
+    block,
+  });
 };
 
 export default function App() {
-  try {
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-
-  if (measurementId) {
-    ReactGA.initialize(measurementId);
-  }
-} catch {}
-
-  const [activeTab, setActiveTab] = useState<Tab>("projects");
-  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [initialRoute] = useState<Route>(resolveRoute);
+  const [activeTab, setActiveTab] = useState<Tab>(
+    initialRoute.kind === "section"
+      ? initialRoute.section
+      : initialRoute.kind === "achievement"
+        ? "achievements"
+        : "projects",
+  );
+  const [showAllProjects, setShowAllProjects] = useState(
+    initialRoute.kind === "project",
+  );
   const [showAllCerts, setShowAllCerts] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
   const [highlightedProjectQuery, setHighlightedProjectQuery] = useState<string | null>(null);
   const [isAppReady, setIsAppReady] = useState(false);
-  const deepLinkTimers = useRef<number[]>([]);
+  const [emailNotice, setEmailNotice] = useState("");
+  const routeTimers = useRef<number[]>([]);
+  const routeToken = useRef(0);
+  const copyTimer = useRef<number | undefined>(undefined);
+  /** Route last applied, used to keep scroll position when a modal closes. */
+  const lastAppliedRoute = useRef<Route | null>(null);
+  /** URL our own code navigated to, so popstate/hashchange can ignore echoes. */
+  const lastHandledLocation = useRef<string>(currentLocation());
+  /** True only when the open project was pushed by `openProject`. */
+  const projectPushed = useRef(false);
+  /** True only when the open achievement was pushed by `openAchievement`. */
+  const achievementPushed = useRef(false);
 
   const visibleProjects = showAllProjects ? projects : projects.slice(0, PREVIEW_COUNT);
   const visibleCerts    = showAllCerts    ? certificates : certificates.slice(0, PREVIEW_COUNT);
 
-  const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
+  const tabs: { id: Tab; label: string; icon: ReactNode }[] = [
     { id: "projects",     label: "Projects",     icon: <Grid3X3 size={12} /> },
+    { id: "achievements", label: "Achievements", icon: <Trophy size={12} /> },
     { id: "certificates", label: "Certificates", icon: <Bookmark size={12} /> },
     { id: "skills",       label: "Skills",       icon: <Cpu size={12} /> },
   ];
 
   useEffect(() => {
+    if (!GA_MEASUREMENT_ID) return;
+
     ReactGA.send({
       hitType: "pageview",
-      page: location.pathname + location.search,
+      page: window.location.pathname + window.location.search,
     });
-  }, [location]);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -111,7 +161,8 @@ export default function App() {
       window.setTimeout(resolve, 450);
     });
     const fontsReady = "fonts" in document ? document.fonts.ready : Promise.resolve();
-    const essentialAssets = [ProfileLogo, ...projects.map((project) => project.image)];
+    // Only above-the-fold art blocks first paint — project screenshots load lazily.
+    const essentialAssets = [ProfileLogo];
 
     void Promise.all([
       Promise.all(essentialAssets.map(preloadImage)),
@@ -126,65 +177,226 @@ export default function App() {
     };
   }, []);
 
+  const clearRouteTimers = useCallback(() => {
+    routeTimers.current.forEach((timer) => window.clearTimeout(timer));
+    routeTimers.current = [];
+  }, []);
+
+  const cancelPendingRoute = useCallback(() => {
+    routeToken.current += 1;
+    clearRouteTimers();
+  }, [clearRouteTimers]);
+
+  /**
+   * Activates the requested tab, waits for its DOM target to mount, then
+   * scrolls. Project routes additionally highlight the card before opening it.
+   */
+  const applyRoute = useCallback(
+    async (route: Route) => {
+      const previous = lastAppliedRoute.current;
+      lastAppliedRoute.current = route;
+
+      const token = ++routeToken.current;
+      clearRouteTimers();
+      setSelectedProject(null);
+      setSelectedAchievement(null);
+      setHighlightedProjectQuery(null);
+      projectPushed.current = false;
+      achievementPushed.current = false;
+
+      if (route.kind === "home") {
+        setActiveTab("projects");
+        return;
+      }
+
+      if (route.kind === "project") {
+        const project = route.project;
+        setShowAllProjects(true);
+        setActiveTab("projects");
+
+        const card = await waitForElement(`project-${project.query}`);
+        if (!card || token !== routeToken.current) return;
+
+        scrollToElement(card, "center");
+
+        routeTimers.current.push(
+          window.setTimeout(() => {
+            if (token === routeToken.current) {
+              setHighlightedProjectQuery(project.query);
+            }
+          }, 350),
+          window.setTimeout(() => {
+            if (token === routeToken.current) {
+              setHighlightedProjectQuery(null);
+              setSelectedProject(project);
+            }
+          }, 1_200),
+        );
+        return;
+      }
+
+      if (route.kind === "achievement") {
+        const achievement = route.achievement;
+        setActiveTab("achievements");
+
+        const card = await waitForElement(`achievement-${achievement.id}`);
+        if (!card || token !== routeToken.current) return;
+
+        scrollToElement(card, "center");
+
+        routeTimers.current.push(
+          window.setTimeout(() => {
+            if (token === routeToken.current) {
+              setSelectedAchievement(achievement);
+            }
+          }, 350),
+        );
+        return;
+      }
+
+      setActiveTab(route.section);
+
+      // Closing a project or achievement returns to the card the visitor was
+      // viewing; the browser restores that scroll position, so skip the jump.
+      if (previous?.kind === "project" || previous?.kind === "achievement") return;
+
+      const target = await waitForElement(SECTION_IDS[route.section]);
+      if (!target || token !== routeToken.current) return;
+      scrollToElement(target, "start");
+    },
+    [clearRouteTimers],
+  );
+
+  // Apply the initial shareable URL once the app, fonts and layout are ready.
   useEffect(() => {
-    const project = getProjectFromUrl();
+    if (!isAppReady || initialRoute.kind === "home") return;
 
-    if (!project) {
-      return;
-    }
+    const frame = requestAnimationFrame(() => {
+      void applyRoute(initialRoute);
+    });
 
-    setActiveTab("projects");
-    setShowAllProjects(true);
+    return () => cancelAnimationFrame(frame);
+  }, [isAppReady, initialRoute, applyRoute]);
 
-    const beginDeepLinkTransition = () => {
-      document.getElementById(`project-${project.query}`)?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+  // Browser back/forward (and manual hash edits) re-read the URL.
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const route = resolveRoute();
+      const location = currentLocation();
 
-      deepLinkTimers.current.push(
-        window.setTimeout(() => setHighlightedProjectQuery(project.query), 450),
-        window.setTimeout(() => {
-          setHighlightedProjectQuery(null);
-          setSelectedProject(project);
-        }, 1_300),
-      );
+      if (location === lastHandledLocation.current) return;
+      lastHandledLocation.current = location;
+      void applyRoute(route);
     };
 
-    deepLinkTimers.current.push(window.setTimeout(beginDeepLinkTransition, 100));
+    window.addEventListener("popstate", handleLocationChange);
+    window.addEventListener("hashchange", handleLocationChange);
 
     return () => {
-      deepLinkTimers.current.forEach(window.clearTimeout);
-      deepLinkTimers.current = [];
+      window.removeEventListener("popstate", handleLocationChange);
+      window.removeEventListener("hashchange", handleLocationChange);
     };
-  }, []);
+  }, [applyRoute]);
 
-  useEffect(() => {
-    const handlePopState = () => {
-      setSelectedProject(getProjectFromUrl());
+  useEffect(
+    () => () => {
+      clearRouteTimers();
+      if (copyTimer.current) window.clearTimeout(copyTimer.current);
+    },
+    [clearRouteTimers],
+  );
+
+  const selectTab = (tab: Tab) => {
+    cancelPendingRoute();
+    setHighlightedProjectQuery(null);
+    setActiveTab(tab);
+    navigateToSection(tab);
+    lastHandledLocation.current = currentLocation();
+    lastAppliedRoute.current = { kind: "section", section: tab };
+    trackEvent("select_tab", tab);
+  };
+
+  const copyEmail = () => {
+    const announce = (message: string) => {
+      setEmailNotice(message);
+      if (copyTimer.current) window.clearTimeout(copyTimer.current);
+      copyTimer.current = window.setTimeout(() => setEmailNotice(""), 2_500);
     };
 
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
+    navigator.clipboard
+      .writeText(MY_EMAIL)
+      .then(() => {
+        announce("Email address copied");
+        trackEvent("copy_email");
+      })
+      .catch(() => {
+        announce("Couldn't copy — opening your mail app");
+      });
+  };
 
   const openProject = (project: Project) => {
+    cancelPendingRoute();
+    setHighlightedProjectQuery(null);
     setSelectedProject(project);
-    updateProjectUrl(project.query);
+    pushProjectUrl(project.query);
+    projectPushed.current = true;
+    lastHandledLocation.current = currentLocation();
+    lastAppliedRoute.current = { kind: "project", project };
+    trackEvent("open_project", project.query);
   };
 
   const closeProject = () => {
+    cancelPendingRoute();
     setSelectedProject(null);
-    updateProjectUrl(undefined, true);
+    setHighlightedProjectQuery(null);
+
+    if (projectPushed.current) {
+      // Let the browser walk back to the entry that opened the project.
+      projectPushed.current = false;
+      window.history.back();
+      return;
+    }
+
+    // Directly-opened project: replace the entry so Back still leaves the site.
+    replaceWithSection("projects");
+    lastHandledLocation.current = currentLocation();
+    lastAppliedRoute.current = { kind: "section", section: "projects" };
+  };
+
+  const openAchievement = (achievement: Achievement) => {
+    cancelPendingRoute();
+    setSelectedAchievement(achievement);
+    pushAchievementUrl(achievement.id);
+    achievementPushed.current = true;
+    lastHandledLocation.current = currentLocation();
+    lastAppliedRoute.current = { kind: "achievement", achievement };
+    trackEvent("open_achievement", achievement.id);
+  };
+
+  const closeAchievement = () => {
+    cancelPendingRoute();
+    setSelectedAchievement(null);
+
+    if (achievementPushed.current) {
+      // Let the browser walk back to the entry that opened the achievement.
+      achievementPushed.current = false;
+      window.history.back();
+      return;
+    }
+
+    // Directly-opened achievement: replace the entry so Back leaves the site.
+    replaceWithSection("achievements");
+    lastHandledLocation.current = currentLocation();
+    lastAppliedRoute.current = { kind: "section", section: "achievements" };
   };
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <AnimatePresence>{!isAppReady && <LoadingScreen />}</AnimatePresence>
       <motion.div
         className="app-root"
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: isAppReady ? 1 : 0, y: isAppReady ? 0 : 8 }}
+        initial={{ y: 8 }}
+        animate={{ y: isAppReady ? 0 : 8 }}
         transition={{ duration: 0.45, ease: "easeOut" }}
         aria-busy={!isAppReady}
       >
@@ -192,8 +404,8 @@ export default function App() {
       <header className="hero">
         <div className="hero-inner">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
             transition={{ duration: 0.5 }}
             className="avatar-wrap"
           >
@@ -202,22 +414,24 @@ export default function App() {
               src={ProfileLogo}
               alt="Profile"
               className="avatar-img"
+              width={152}
+              height={152}
               referrerPolicy="no-referrer"
             />
           </motion.div>
 
           <div className="hero-text">
             <motion.h1
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
               transition={{ delay: 0.2 }}
               className="hero-name"
             >
               R Dhashwin <span className="accent">Kennedy</span>
             </motion.h1>
             <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
               transition={{ delay: 0.3 }}
               className="hero-sub"
             >
@@ -227,8 +441,8 @@ export default function App() {
           </div>
 
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ delay: 0.4 }}
             className="hero-btns"
           >
@@ -275,11 +489,15 @@ export default function App() {
 
         {/* Tab bar */}
         <div className="tab-bar-wrap">
-          <div className="tab-bar">
+          <div className="tab-bar" role="tablist" aria-label="Portfolio sections">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                aria-controls="tab-panel"
+                onClick={() => selectTab(tab.id)}
                 className={`tab-btn ${activeTab === tab.id ? "tab-btn--active" : ""}`}
               >
                 <div
@@ -293,17 +511,17 @@ export default function App() {
         </div>
 
         {/* Tab content */}
-        <div className="tab-content">
+        <div className="tab-content" id="tab-panel" role="tabpanel" aria-label={activeTab}>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 10 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
               {activeTab === "projects" && (
-                <div className="projects-list">
+                <div className="projects-list" id="projects-section">
                   {visibleProjects.map((project) => (
                     <ProjectCard
                       key={project.id}
@@ -314,6 +532,7 @@ export default function App() {
                   ))}
                   {projects.length > PREVIEW_COUNT && (
                     <button
+                      type="button"
                       className="view-all-btn"
                       onClick={() => setShowAllProjects((v) => !v)}
                     >
@@ -325,8 +544,15 @@ export default function App() {
                 </div>
               )}
 
+              {activeTab === "achievements" && (
+                <AchievementsSection
+                  achievements={achievements}
+                  onOpen={openAchievement}
+                />
+              )}
+
               {activeTab === "skills" && (
-                <div className="skills-education-layout">
+                <div className="skills-education-layout" id="skills-section">
                   <section className="skills-education-section">
                     <h2 className="skills-education-heading">Skills</h2>
                     <SkillsSection skills={skills} />
@@ -339,10 +565,11 @@ export default function App() {
               )}
 
               {activeTab === "certificates" && (
-                <div className="certs-list">
+                <div id="certificates-section">
                   <CertificatesSection certificates={visibleCerts} />
                   {certificates.length > PREVIEW_COUNT && (
                     <button
+                      type="button"
                       className="view-all-btn"
                       onClick={() => setShowAllCerts((v) => !v)}
                     >
@@ -410,7 +637,19 @@ export default function App() {
       {selectedProject && (
         <ProjectModal project={selectedProject} onClose={closeProject} />
       )}
+      <AnimatePresence>
+        {selectedAchievement && (
+          <AchievementModal
+            achievement={selectedAchievement}
+            onClose={closeAchievement}
+          />
+        )}
+      </AnimatePresence>
       </motion.div>
-    </>
+
+      <div className="copy-toast" role="status" aria-live="polite">
+        {emailNotice}
+      </div>
+    </MotionConfig>
   );
 }

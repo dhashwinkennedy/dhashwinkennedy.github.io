@@ -1,4 +1,5 @@
 import { localLogoUrl } from "../constants";
+import HighlightedText from "./HighlightedText";
 
 interface SkillBadge {
   name: string;
@@ -15,24 +16,6 @@ interface AboutData {
 
 interface Props {
   about: AboutData;
-}
-
-/** Splits on **text** — highlighted parts get accent color, rest stays normal */
-function HighlightedText({ text }: { text: string }) {
-  const parts = text.split(/\*\*(.*?)\*\*/g);
-  return (
-    <>
-      {parts.map((part, i) =>
-        i % 2 === 1 ? (
-          <span key={i} className="accent">
-            {part}
-          </span>
-        ) : (
-          part
-        ),
-      )}
-    </>
-  );
 }
 
 export default function AboutSection({ about }: Props) {
@@ -60,6 +43,10 @@ export default function AboutSection({ about }: Props) {
                   src={localLogoUrl(item.iconUrl)}
                   alt={item.name}
                   className="skill-icon"
+                  width={22}
+                  height={22}
+                  loading="lazy"
+                  decoding="async"
                   onError={(event) => event.currentTarget.remove()}
                 />
               )}
@@ -79,6 +66,10 @@ export default function AboutSection({ about }: Props) {
                   src={localLogoUrl(item.iconUrl)}
                   alt={item.name}
                   className="skill-icon"
+                  width={22}
+                  height={22}
+                  loading="lazy"
+                  decoding="async"
                   onError={(event) => event.currentTarget.remove()}
                 />
               )}

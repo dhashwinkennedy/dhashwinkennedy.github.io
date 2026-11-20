@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
+
 interface SkillGroup {
   category: string;
   items: string[];
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
 interface Props {
