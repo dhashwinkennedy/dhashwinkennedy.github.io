@@ -3,57 +3,60 @@ import React from "react";
 
 // ── Asset imports ─────────────────────────────────────────────────────────────
 import prj1Image from "./assets/prj1.png";
-import prj1S1 from "./assets/screenshot/prj1S1.png";
-import prj1S2 from "./assets/screenshot/prj1S2.png";
-import prj1S3 from "./assets/screenshot/prj1S3.png";
-import prj1S4 from "./assets/screenshot/prj1S4.png";
-import prj1S5 from "./assets/screenshot/prj1S5.png";
-import prj1S7 from "./assets/screenshot/prj1S7.png";
-import prj1S8 from "./assets/screenshot/prj1S8.png";
+import prj1S1 from "./assets/screenshot/prj1S1.jpg";
+import prj1S2 from "./assets/screenshot/prj1S2.jpg";
+import prj1S3 from "./assets/screenshot/prj1S3.jpg";
+import prj1S4 from "./assets/screenshot/prj1S4.jpg";
+import prj1S5 from "./assets/screenshot/prj1S5.jpg";
+import prj1S7 from "./assets/screenshot/prj1S7.jpg";
+import prj1S8 from "./assets/screenshot/prj1S8.jpg";
 
 
-import CresentLogo from "./assets/Cresent_logo.png"
+import CrescentLogo from "./assets/Crescent_logo.png"
 
-import prj2Image from "./assets/prj2.png";
-import prj2S1 from "./assets/screenshot/prj2S1.png";
-import prj2S2 from "./assets/screenshot/prj2S2.png";
-import prj2S3 from "./assets/screenshot/prj2S3.png";
+import prj2S1 from "./assets/screenshot/prj2S1.jpg";
+import prj2S2 from "./assets/screenshot/prj2S2.jpg";
+import prj2S3 from "./assets/screenshot/prj2S3.jpg";
 
 
-import prj3Image from "./assets/prj3.png";
-import prj3S1 from "./assets/screenshot/prj3S1.png";
-import prj3S2 from "./assets/screenshot/prj3S2.png";
+import prj3S1 from "./assets/screenshot/prj3S1.jpg";
+import prj3S2 from "./assets/screenshot/prj3S2.jpg";
 
 import prj4Image from "./assets/prj4.jpg";
-import prj4S1 from "./assets/screenshot/prj4S1.png";
-import prj4S2 from "./assets/screenshot/prj4S2.png";
-import prj4S3 from "./assets/screenshot/prj4S3.png";
+import prj4S1 from "./assets/screenshot/prj4S1.jpg";
+import prj4S2 from "./assets/screenshot/prj4S2.jpg";
+import prj4S3 from "./assets/screenshot/prj4S3.jpg";
 
 
-import prj5Image from "./assets/prj5.png";
-import prj5S1 from "./assets/screenshot/prj5S1.png";
-import prj5S2 from "./assets/screenshot/prj5S2.png";
-import prj5S3 from "./assets/screenshot/prj5S3.png";
+import prj5Image from "./assets/prj5.jpg";
+import prj5S1 from "./assets/screenshot/prj5S1.jpg";
+import prj5S2 from "./assets/screenshot/prj5S2.jpg";
+import prj5S3 from "./assets/screenshot/prj5S3.jpg";
 
 import prj6Image from "./assets/prj6.png";
-import prj6S1 from "./assets/screenshot/prj6S1.png";
-import prj6S2 from "./assets/screenshot/prj6S2.png";
-import prj6S3 from "./assets/screenshot/prj6S3.png";
+import prj6S1 from "./assets/screenshot/prj6S1.jpg";
+import prj6S2 from "./assets/screenshot/prj6S2.jpg";
+import prj6S3 from "./assets/screenshot/prj6S3.jpg";
 
 
 import FastAPICertImg from "./assets/udemy-FastAPI.jpg";
 import ChatbotCertImg from "./assets/udemy-Chatbot.jpg";
 import n8nCertImg from "./assets/udemy-n8n.jpg";
 import MERNCertImg from "./assets/udemy-MERN.jpg";
-import GuviPythonCertImg from "./assets/GUVI-Python.png";
-import GuviJavaScriptCertImg from "./assets/GUVI-JavaScript.png";
-import GuviHTMLCSSCertImg from "./assets/GUVI-HTMLCSS.png";
+import GuviPythonCertImg from "./assets/GUVI-Python.jpg";
+import GuviJavaScriptCertImg from "./assets/GUVI-JavaScript.jpg";
+import GuviHTMLCSSCertImg from "./assets/GUVI-HTMLCSS.jpg";
 
-import HackeRankPythonBasicCertImg from "./assets/HACKERRANK-Python.png";
+import HackeRankPythonBasicCertImg from "./assets/HACKERRANK-Python.jpg";
 import IndustrIxThumbnail from "./assets/achievements/INDUSTRIX_1.jpg";
 import IndustrIxPhoto2 from "./assets/achievements/INDUSTRIX_2.jpg";
 import IndustrIxPhoto3 from "./assets/achievements/INDUSTRIX_3.jpg";
 import IndustrIxPhoto4 from "./assets/achievements/INDUSTRIX_4.jpg";
+
+import TECHCYCLE1 from "./assets/achievements/TECHCYCLE_1.jpg";
+import TECHCYCLE2 from "./assets/achievements/TECHCYCLE_2.jpg";
+import TECHCYCLE3 from "./assets/achievements/TECHCYCLE_3.jpg";
+import TECHCYCLE4 from "./assets/achievements/TECHCYCLE_4.jpg";
 
 // ─── PROJECTS ────────────────────────────────────────────────────────────────
 export interface ProjectSkill {
@@ -221,7 +224,7 @@ export const projects: Project[] = [
       "A production-ready Telegram to Dropbox automation bot built using n8n, JavaScript, Telegram Bot API, Dropbox API and PostgreSQL. It enables users to securely connect multiple Dropbox accounts via OAuth 2.0, upload files directly from Telegram, manage linked accounts, and automate cloud file transfers through a scalable low-code workflow.",
     longDesc:
       "Telegram to Dropbox Upload Bot is a production-ready automation solution built using **n8n**, **JavaScript**, **Telegram Bot API**, **Dropbox API**, **PostgreSQL**,. It enables users to securely connect multiple Dropbox accounts using **OAuth 2.0**, manage linked accounts, and upload files directly from Telegram to their preferred Dropbox. The project features automatic access token refresh, interactive inline keyboards, persistent account management,, and a modular workflow design separating authentication and file upload logic. By combining low-code automation with custom JavaScript, this project demonstrates how scalable workflow automation and real-world API integrations can be implemented efficiently while maintaining flexibility, security, and a clean architecture suitable for production deployment.",
-    github: "https://github.com/dhashwinkennedy/Google-Drive-Upload-Telegram-Bot",
+    github: "https://github.com/dhashwinkennedy/Telegram-Dropbox-Bot-n8n",
     live: "",
 
     // Replace with your own imported screenshot assets or URLs
@@ -298,7 +301,7 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    image: prj2Image,
+    image: prj2S1,
     title: "Daily Price Monitoring & Data Extraction Engine for Amazon Search Results",
     query: "amazon-price-tracker",
     date: "April 30, 2026",
@@ -336,7 +339,7 @@ export const projects: Project[] = [
     ],
   }, {
     id: 3,
-    image: prj3Image,
+    image: prj3S1,
     title: "AI-Powered Social Media Quote Publisher ",
     query: "ai-powered-social-media-quote-publisher",
     date: "June 06, 2026",
@@ -386,29 +389,130 @@ export interface AchievementLink {
   type?: "github" | "live" | "external";
 }
 
+export interface AchievementMember {
+  name: string;
+  /** Optional profile, portfolio, or social link. Rendered as a hyperlink when set. */
+  url?: string;
+}
+
+export interface AchievementGithub {
+  repoName: string;
+  description?: string;
+  url: string;
+}
+
 export interface Achievement {
   id: string;
   title: string;
+  /**
+   * Final placement in the event. 1, 2 and 3 render as Winner / Runner-up /
+   * Second Runner-up badges; higher ranks keep a neutral badge (e.g. "#4").
+   */
+  rank?: number;
+  /** Custom placement tag e.g. "Winner", "Runner", "Second-Runner", "#4". */
+  tag?: string;
   thumbnail?: string;
   shortDescription: string;
   longDescription?: string;
   images?: string[];
   links?: AchievementLink[];
+  /** Optional GitHub repository link with repo name and 1-line description */
+  github?: AchievementGithub;
+  /**
+   * Event details shown above the description. Every field is optional and
+   * event-agnostic — hackathon, competition, conference, workshop or meetup.
+   * Rows without a value are skipped automatically.
+   */
+  eventName?: string;
+  organizedBy?: string;
+  date?: string;
+  place?: string;
+  /** Shown under the event details. Team members are optional too. */
+  teamName?: string;
+  teamMembers?: AchievementMember[];
 }
 
 export const achievements: Achievement[] = [
   {
     id: "industrix-hackathon",
     title: "First Place — INDUSTRIX Hackathon",
+    rank: 1,
+    tag: "Winner",
     thumbnail: IndustrIxThumbnail,
     shortDescription:
-      "Awarded First Place at the INDUSTRIX Hackathon as part of Team AXIOMX.",
+      "Secured **1st Place** at INDUSTRIX 2026, an ASME-organized National-Level Hackathon.",
+    eventName: "INDUSTRIX'26",
+    organizedBy:
+      "ASME BSACIST Student Section, in association with the Department of Mechanical Engineering",
+    date: "November 12, 2026",
+    place: "B.S. Abdur Rahman Crescent Institute of Science and Technology",
+    teamName: "AxiomX",
+    github: {
+      repoName: "TraceCarbon",
+      description: "An AI-assisted Scope 3 emissions management platform for supplier data collection, carbon footprint calculations, and sustainability analytics.",
+      url: "https://github.com/dhashwinkennedy/TraceCarbon",
+    },
+    teamMembers: [
+
+      // { name: "Teammate Name" },
+      { name: "K Amina Shadin", url: "https://www.linkedin.com/in/k-amina-shadin-629126429/" },
+      { name: "Shahana Begum", url: "https://www.linkedin.com/in/shahana-begum-163487444/" },
+      { name: "Mubasheer" },
+
+    ],
     longDescription:
-      "Engineered an automated industrial solution under rapid hackathon deadlines. Collaborated closely with Team AXIOMX to conceptualize, prototype, and demonstrate the solution to the judging panel, securing First Place.",
+      `**TraceCarbon | INDUSTRIX 2026 – 1st Place Winner**
+
+Developed an AI-assisted Scope 3 Supplier Emissions Management Platform that enables manufacturers to collect, validate and calculate supplier carbon emissions using Product-Factor, Activity-Based and Spend-Based methodologies.
+
+Features supplier management, automated data mapping, emissions analytics and carbon reduction recommendations.
+
+**Achievement:** Secured 1st Place at INDUSTRIX – ASME National-Level Hackathon 2026.`,
     images: [
       IndustrIxPhoto2,
       IndustrIxPhoto3,
       IndustrIxPhoto4,
+    ],
+  }, {
+    id: "techcycle-hackathon",
+    title: "Second Place — TECHCYCLE Hackathon",
+    rank: 2,
+    tag: "Runner-up",
+    thumbnail: TECHCYCLE1,
+    shortDescription:
+      "Secured **2nd Place** in the E-Waste Hackathon at TECHCYCLE 2026, organised by B.S. Abdur Rahman Crescent Institute of Science and Technology in association with IDREA.",
+    eventName: "TECHCYCLE'26",
+    organizedBy:
+      "Organised by the Department of Electrical and Electronics Engineering, B.S. Abdur Rahman Crescent Institute of Science and Technology, in association with the International Decarbonization and Renewable Energy Association (IDREA).",
+    date: "October 29, 2026",
+    place: "B.S. Abdur Rahman Crescent Institute of Science and Technology",
+    teamName: "AxiomX",
+    github: {
+      repoName: "Techcycle route simulator",
+      description: "A simulation-based e-waste collection and transportation optimisation system featuring multi-facility assignment, capacity-aware fleet management, route planning and sustainability metrics.",
+      url: "https://github.com/dhashwinkennedy/techcycle-route-simulator",
+    },
+    teamMembers: [
+
+      // { name: "Teammate Name" },
+      { name: "Fahima S", url: "https://www.linkedin.com/in/fahima-s-0b2b3443a/" },
+      { name: "Mariam Fathima Imran" },
+      { name: "Tharun D" },
+
+    ],
+    longDescription:
+      `**2nd Place – TECHCYCLE 2026 E-Waste Hackathon** 🏆
+
+Secured 2nd place at TECHCYCLE 2026, organised by B.S. Abdur Rahman Crescent Institute of Science and Technology in association with IDREA.
+
+Developed an e-waste collection and transportation route optimisation prototype within 2.5 hours.
+
+Implemented a simulation-based, multi-depot routing approach with automatic pickup-point assignment, rule-based collection prioritisation using storage utilisation and waiting time, and vehicle capacity management considering both weight (kg) and volume (m³). Evaluated route efficiency against a nearest-next baseline using estimated travel distances, operating time, fuel cost and CO₂ emissions.`,
+    images: [
+      TECHCYCLE1,
+      TECHCYCLE2,
+      TECHCYCLE3,
+      TECHCYCLE4
     ],
   },
 ];
@@ -457,9 +561,9 @@ export interface Education {
 
 export const education: Education[] = [
   {
-    logo: CresentLogo,
-    institute: "B. S. Abdur Rahman Cresent Institute of Science and Technology",
-    field: "Bachlors of Technology,Computer Science Engineering",
+    logo: CrescentLogo,
+    institute: "B. S. Abdur Rahman Crescent Institute of Science and Technology",
+    field: "Bachelor of Technology, Computer Science Engineering",
     duration: "2026 — 2030",
   },
 ];
@@ -614,7 +718,7 @@ export const certificates = [
     image: GuviPythonCertImg,
     imageClass: "guvi",
     title: "Python Certification of Completion",
-    date: "May 18 2024",
+    date: "May 18, 2024",
     description:
       "Completed a certification course covering core Python programming concepts and applications.",
     issuer: "HCLGUVI",
@@ -650,7 +754,7 @@ export const certificates = [
     image: GuviHTMLCSSCertImg,
     imageClass: "guvi",
     title: "HTML & CSS Certification of Completion",
-    date: "May 6, 2025",
+    date: "May 06, 2025",
     description:
       "Completed a comprehensive program covering semantic HTML5 and modern CSS3. Focused on responsive design, Flexbox, and CSS Grid to build accessible, mobile-first user interfaces.",
     issuer: "HCLGUVI",

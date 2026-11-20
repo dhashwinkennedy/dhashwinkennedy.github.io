@@ -1,28 +1,35 @@
-# ── Dependencies ──────────────────────────────────────────────────────────────
+# ── Dependencies ─────────────────────────────────────────────
 node_modules/
 .pnp
 .pnp.js
 
-# ── Build output ───────────────────────────────────────────────────────────────
+# ── Build output ─────────────────────────────────────────────
 dist/
 dist-ssr/
 build/
 
-# ── Environment variables (keep your secrets safe) ────────────────────────────
+# ── Environment variables (keep secrets out of git) ──────────
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# ── Vite cache ─────────────────────────────────────────────────────────────────
+# ── Vite cache ───────────────────────────────────────────────
 .vite/
 vite.config.ts.timestamp-*
 
-# ── TypeScript ─────────────────────────────────────────────────────────────────
+# ── TypeScript ───────────────────────────────────────────────
 *.tsbuildinfo
 
-# ── Editor / IDE ───────────────────────────────────────────────────────────────
+# ── Installers / large binaries ──────────────────────────────
+*.exe
+*.msi
+*.dmg
+*.pkg
+*.app
+
+# ── Editor / IDE ─────────────────────────────────────────────
 .vscode/
 .idea/
 *.suo
@@ -31,9 +38,8 @@ vite.config.ts.timestamp-*
 *.sln
 *.sw?
 
-# ── OS files ───────────────────────────────────────────────────────────────────
+# ── OS files ─────────────────────────────────────────────────
 .DS_Store
-.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
@@ -41,7 +47,7 @@ Thumbs.db
 ehthumbs.db
 desktop.ini
 
-# ── Logs ───────────────────────────────────────────────────────────────────────
+# ── Logs ─────────────────────────────────────────────────────
 logs/
 *.log
 npm-debug.log*
@@ -49,11 +55,15 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# ── Testing ────────────────────────────────────────────────────────────────────
+# ── Testing ──────────────────────────────────────────────────
 coverage/
 .nyc_output/
 
-# ── Misc ───────────────────────────────────────────────────────────────────────
+# ── Misc ─────────────────────────────────────────────────────
 .eslintcache
 .stylelintcache
 *.local
+
+# AI development documentation (local only)
+AGENTS.md
+docs/CODEBASE_MAP.md

@@ -12,7 +12,7 @@ interface Certificate {
   title: string;
   description: string;
   issuer: string;
-  date: string;          // ← new field
+  date: string;
   verifyLink: string;
   skills: Skill[];
 }
@@ -31,6 +31,7 @@ const CalendarIcon = () => (
     strokeWidth="2.2"
     strokeLinecap="round"
     strokeLinejoin="round"
+    aria-hidden="true"
   >
     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
     <line x1="16" y1="2" x2="16" y2="6" />
@@ -48,6 +49,10 @@ export default function CertificatesSection({ certificates }: Props) {
             src={cert.image}
             alt={cert.title}
             className={`Certificate-img-pic ${cert.imageClass}`}
+            width={220}
+            height={165}
+            loading="lazy"
+            decoding="async"
           />
           <div className="text-right-div">
             <h2 className="h2-tag">{cert.title}</h2>
@@ -62,6 +67,10 @@ export default function CertificatesSection({ certificates }: Props) {
                       src={localLogoUrl(skill.iconUrl)}
                       alt={skill.name}
                       className="skill-icon"
+                      width={22}
+                      height={22}
+                      loading="lazy"
+                      decoding="async"
                       onError={(event) => event.currentTarget.remove()}
                     />
                   )}
@@ -86,8 +95,9 @@ export default function CertificatesSection({ certificates }: Props) {
                 href={cert.verifyLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="verify-btn"
               >
-                <button className="verify-btn">Verify Certificate</button>
+                Verify Certificate
               </a>
             </div>
           </div>

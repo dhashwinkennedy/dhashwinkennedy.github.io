@@ -1,20 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
-import path from "path";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react()],
 
-  base: "/", // ✅ since you're using custom domain
-
-  resolve: {
-    alias: {
-      "@": path.resolve(process.cwd(), "."),
-    },
-  },
+  base: "/", // custom domain (see public/CNAME)
 
   build: {
-    outDir: "dist", // ensure correct output
+    outDir: "dist",
+    // Images live in src/assets and are already compressed; keep them as files
+    // instead of inlining them as base64 data URLs.
+    assetsInlineLimit: 2048,
   },
 });
